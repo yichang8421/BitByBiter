@@ -1,14 +1,9 @@
 import React from "react";
-import {
-    HashRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-    useLocation,
-
-} from "react-router-dom";
-import Layout from "components/Layout";
+import {HashRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
+import Money from "./views/Money";
+import Labels from "./views/Labels";
+import Statistics from "./views/Statistics";
+import NoMatch from "./views/NoMatch";
 
 function App() {
     return (
@@ -29,42 +24,6 @@ function App() {
                 </Route>
             </Switch>
         </Router>
-    );
-}
-
-function Money() {
-    return(
-        <Layout>
-            <h2>Money</h2>
-        </Layout>
-    )
-}
-
-function Labels() {
-    return (
-        <Layout>
-            <h2>Labels</h2>
-        </Layout>
-    );
-}
-
-function Statistics() {
-    return (
-        <Layout>
-            <h2>Statistics</h2>
-        </Layout>
-    );
-}
-
-function NoMatch() {
-    let location = useLocation();
-
-    return (
-        <div>
-            <h3>
-                No match for <code>{location.pathname}</code>
-            </h3>
-        </div>
     );
 }
 
