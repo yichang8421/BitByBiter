@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 import React from "react";
-require("icons/money.svg");
-require("icons/label.svg");
-require("icons/statistics.svg");
+// @ts-ignore
+import Icon from "components/Icon";
 
 const NavWrapper = styled.div`
     //border: 1px solid blue;
@@ -11,20 +10,25 @@ const NavWrapper = styled.div`
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     >ul{
         display: flex;
+        
         >li{
-            width: 33.3333%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            padding:4px 0;
-            justify-content: center;
-            align-items: center;
+            width: 33.3333%;            
             box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
 
-            .icon{
-                width: 24px;
-                height: 24px;
+            >.item{
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              padding:4px 0;
+              justify-content: center;
+              align-items: center;
+              
+                  >.icon{
+                    width: 24px;
+                    height: 24px;
+                  }
             }
+            
         }
     }
 `;
@@ -34,22 +38,22 @@ const Nav = () => {
         <NavWrapper>
             <ul>
                 <li>
-                    <svg className="icon">
-                        <use xlinkHref="#money"/>
-                    </svg>
-                    <Link to="/money">记账</Link>
+                    <Link to="/money" className="item">
+                        <Icon name={"money"}/>
+                        <span>记账</span>
+                    </Link>
                 </li>
                 <li>
-                    <svg className="icon" fill="green">
-                        <use xlinkHref="#label"/>
-                    </svg>
-                    <Link to="/labels">标签</Link>
+                    <Link to="/labels" className="item">
+                        <Icon name={"label"} fill="green"/>
+                        <span>标签</span>
+                    </Link>
                 </li>
                 <li>
-                    <svg className="icon">
-                        <use xlinkHref="#statistics"/>
-                    </svg>
-                    <Link to="/statistics">统计</Link>
+                    <Link to="/statistics" className="item">
+                        <Icon name={"statistics"}/>
+                        <span>统计</span>
+                    </Link>
                 </li>
             </ul>
         </NavWrapper>
