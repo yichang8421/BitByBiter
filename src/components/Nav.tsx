@@ -42,7 +42,7 @@ const Nav = () => {
                 </li>
             </ul>
         </NavWrapper>
-    )
+    );
 };
 
 export default Nav;
