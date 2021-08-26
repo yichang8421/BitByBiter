@@ -8,62 +8,52 @@ import {
     useLocation,
 
 } from "react-router-dom";
-import styled from "styled-components";
-import Nav from "components/Nav";
-
-const Wrapper = styled.div`
-    border: 1px solid red;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    //line-height: 24px;
-    box-shadow: 0 0 3px rgba(0,0,0,0.25);
-    
-`;
-
-const Main = styled.div`
-    border: 1px solid green;
-    flex-grow: 1;
-    overflow: auto;
-`;
+import Layout from "components/Layout";
 
 function App() {
     return (
         <Router>
-            <Wrapper>
-                <Main>
-                    <Switch>
-                        <Route path="/money">
-                            <Money/>
-                        </Route>
-                        <Route path="/labels">
-                            <Labels/>
-                        </Route>
-                        <Route path="/statistics">
-                            <Statistics/>
-                        </Route>
-                        <Redirect exact from="/" to="money"/>
-                        <Route path="*">
-                            <NoMatch/>
-                        </Route>
-                    </Switch>
-                </Main>
-                <Nav/>
-            </Wrapper>
+            <Switch>
+                <Route path="/money">
+                    <Money/>
+                </Route>
+                <Route path="/labels">
+                    <Labels/>
+                </Route>
+                <Route path="/statistics">
+                    <Statistics/>
+                </Route>
+                <Redirect exact from="/" to="money"/>
+                <Route path="*">
+                    <NoMatch/>
+                </Route>
+            </Switch>
         </Router>
     );
 }
 
 function Money() {
-    return <h2>Money</h2>;
+    return(
+        <Layout>
+            <h2>Money</h2>
+        </Layout>
+    )
 }
 
 function Labels() {
-    return <h2>Labels</h2>;
+    return (
+        <Layout>
+            <h2>Labels</h2>
+        </Layout>
+    );
 }
 
 function Statistics() {
-    return <h2>Statistics</h2>;
+    return (
+        <Layout>
+            <h2>Statistics</h2>
+        </Layout>
+    );
 }
 
 function NoMatch() {
