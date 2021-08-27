@@ -41,15 +41,15 @@ const Nav = () => {
         <NavWrapper>
             <ul>
                 <li>
-                    <NavLink to="/money" activeClassName="selected">
-                        <Icon name={"money"}/>
-                        <span>记账</span>
+                    <NavLink to="/ledger" activeClassName="selected">
+                        <Icon name={"ledger"} fill="green"/>
+                        <span>收支明细</span>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/labels" activeClassName="selected">
-                        <Icon name={"label"} fill="green"/>
-                        <span>标签</span>
+                    <NavLink to="/money" activeClassName="selected">
+                        <Icon name={"money"}/>
+                        <span>记一笔</span>
                     </NavLink>
                 </li>
                 <li>

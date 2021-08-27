@@ -1,12 +1,12 @@
 import Layout from "../components/Layout";
 import React from "react";
 
-function Labels() {
+function Ledger() {
     return (
         <Layout>
-            <h2>Labels</h2>
+            <h2>Ledger</h2>
         </Layout>
     );
 }
 
-export default Labels;
+export default Ledger;

@@ -1,7 +1,7 @@
 import React from "react";
 import {HashRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 import Money from "./views/Money";
-import Labels from "./views/Labels";
+import Ledger from "./views/Ledger";
 import Statistics from "./views/Statistics";
 import NoMatch from "./views/NoMatch";
 
@@ -12,13 +12,13 @@ function App() {
                 <Route path="/money">
                     <Money/>
                 </Route>
-                <Route path="/labels">
-                    <Labels/>
+                <Route path="/ledger">
+                    <Ledger/>
                 </Route>
                 <Route path="/statistics">
                     <Statistics/>
                 </Route>
-                <Redirect exact from="/" to="money"/>
+                <Redirect exact from="/" to="ledger"/>
                 <Route path="*">
                     <NoMatch/>
                 </Route>
