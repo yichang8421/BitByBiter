@@ -12,7 +12,6 @@ const TagsSelection = styled.section`
         padding:0 4px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         >li{
             //background: #ff6200;
             box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
@@ -82,14 +81,6 @@ function Money() {
                         <span>吃饭</span>
                     </li>
                     <li>
-                        <Icon name={"dwell"}/>
-                        <span>住房</span>
-                    </li>
-                    <li>
-                        <Icon name={"travel"}/>
-                        <span>出行</span>
-                    </li>
-                    <li>
                         <Icon name={"cloth"}/>
                         <span>衣服</span>
                     </li>
@@ -98,24 +89,8 @@ function Money() {
                         <span>吃饭</span>
                     </li>
                     <li>
-                        <Icon name={"dwell"}/>
-                        <span>住房</span>
-                    </li>
-                    <li>
                         <Icon name={"travel"}/>
                         <span>出行</span>
-                    </li>
-                    <li>
-                        <Icon name={"cloth"}/>
-                        <span>衣服</span>
-                    </li>
-                    <li>
-                        <Icon name={"eat"}/>
-                        <span>吃饭</span>
-                    </li>
-                    <li>
-                        <Icon name={"dwell"}/>
-                        <span>住房</span>
                     </li>
                     <li>
                         <Icon name={"travel"}/>
