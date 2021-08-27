@@ -14,9 +14,9 @@ const NavWrapper = styled.div`
         >li{
             width: 33.3333%;            
             box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+            text-align: center;
 
-            >.item{
-              text-align: center;
+            >a{
               display: flex;
               flex-direction: column;
               padding:4px 0;
@@ -38,19 +38,19 @@ const Nav = () => {
         <NavWrapper>
             <ul>
                 <li>
-                    <Link to="/money" className="item">
+                    <Link to="/money">
                         <Icon name={"money"}/>
                         <span>记账</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/labels" className="item">
+                    <Link to="/labels">
                         <Icon name={"label"} fill="green"/>
                         <span>标签</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/statistics" className="item">
+                    <Link to="/statistics">
                         <Icon name={"statistics"}/>
                         <span>统计</span>
                     </Link>
