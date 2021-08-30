@@ -42,7 +42,7 @@ const Nav = () => {
             <ul>
                 <li>
                     <NavLink to="/ledger" activeClassName="selected">
-                        <Icon name={"ledger"} fill="green"/>
+                        <Icon name={"ledger"} />
                         <span>收支明细</span>
                     </NavLink>
                 </li>
