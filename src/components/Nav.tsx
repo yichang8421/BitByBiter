@@ -59,7 +59,7 @@ const Nav = () => {
                     <NavIcon pathname={"/money"} name={"记一笔"} defaultIcon={MoneyIcon} selectedIcon={MoneyIconSelected}/>
                 </li>
                 <li>
-                    <NavIcon pathname={"/statistics"} name={"记一笔"} defaultIcon={statisticsIcon} selectedIcon={statisticsIconSelected}/>
+                    <NavIcon pathname={"/statistics"} name={"统计"} defaultIcon={statisticsIcon} selectedIcon={statisticsIconSelected}/>
                 </li>
             </ul>
         </NavWrapper>
