@@ -4,26 +4,33 @@ import Money from "./views/Money";
 import Ledger from "./views/Ledger";
 import Statistics from "./views/Statistics";
 import NoMatch from "./views/NoMatch";
+import styled from "styled-components";
+
+const AppWrapper = styled.div`
+    color:#333;
+`;
 
 function App() {
     return (
-        <Router>
-            <Switch>
-                <Route path="/money">
-                    <Money/>
-                </Route>
-                <Route path="/ledger">
-                    <Ledger/>
-                </Route>
-                <Route path="/statistics">
-                    <Statistics/>
-                </Route>
-                <Redirect exact from="/" to="ledger"/>
-                <Route path="*">
-                    <NoMatch/>
-                </Route>
-            </Switch>
-        </Router>
+        <AppWrapper>
+            <Router>
+                <Switch>
+                    <Route path="/money">
+                        <Money/>
+                    </Route>
+                    <Route path="/ledger">
+                        <Ledger/>
+                    </Route>
+                    <Route path="/statistics">
+                        <Statistics/>
+                    </Route>
+                    <Redirect exact from="/" to="ledger"/>
+                    <Route path="*">
+                        <NoMatch/>
+                    </Route>
+                </Switch>
+            </Router>
+        </AppWrapper>
     );
 }
 

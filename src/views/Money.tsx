@@ -9,13 +9,17 @@ const TagsSelection = styled.section`
     background: #fff;
     border:1px solid red;
     > ol{
-        padding:0 4px;
+        padding:0 16px;
         display: flex;
         flex-wrap: wrap;
         >li{
+          &.selected{
             //background: #ff6200;
-            box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-            border-radius: 18px;
+            //border:1px solid red;
+            //box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+            border-radius: 20px;
+          }
+            
             width: 20%;            
             text-align: center;
             display: flex;
@@ -23,8 +27,10 @@ const TagsSelection = styled.section`
             justify-content: center;
             align-items: center;
             padding: 6px 18px;
+            font-family: inherit;
             font-size: 14px;
-            margin: 8px 0px;
+            font-weight: bolder;
+            margin: 8px 8px;
         }
     }
 `;
@@ -40,65 +46,49 @@ function Money() {
             </NotesSelection>
             <TagsSelection>
                 <ol>
-                    <li>
-                        <Icon name={"cloth"}/>
-                        <span>衣服</span>
-                    </li>
-                    <li>
-                        <Icon name={"eat"}/>
-                        <span>吃饭</span>
-                    </li>
-                    <li>
-                        <Icon name={"dwell"}/>
-                        <span>住房</span>
-                    </li>
-                    <li>
-                        <Icon name={"travel"}/>
-                        <span>出行</span>
-                    </li>
-                    <li>
-                        <Icon name={"cloth"}/>
-                        <span>衣服</span>
-                    </li>
-                    <li>
-                        <Icon name={"eat"}/>
-                        <span>吃饭</span>
-                    </li>
-                    <li>
-                        <Icon name={"dwell"}/>
-                        <span>住房</span>
-                    </li>
-                    <li>
-                        <Icon name={"travel"}/>
-                        <span>出行</span>
-                    </li>
-                    <li>
-                        <Icon name={"cloth"}/>
-                        <span>衣服</span>
-                    </li>
-                    <li>
-                        <Icon name={"eat"}/>
-                        <span>吃饭</span>
-                    </li>
-                    <li>
-                        <Icon name={"cloth"}/>
-                        <span>衣服</span>
-                    </li>
-                    <li>
-                        <Icon name={"eat"}/>
-                        <span>吃饭</span>
-                    </li>
-                    <li>
-                        <Icon name={"travel"}/>
-                        <span>出行</span>
-                    </li>
-                    <li>
-                        <Icon name={"travel"}/>
-                        <span>出行</span>
-                    </li>
-                    <li>
-                        <Icon name={"add"}/>
+                    <li className="selected">
+                        <Icon name={"add"} />
                         添加
+                    </li>
+                    <li className="selected">
+                        <Icon name={"cloth"} />
+                        <span>衣服</span>
+                    </li>
+                    < li className="selected">
+                        <Icon name={"eat"} />
+                        <span>吃饭</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"dwell"} />
+                        <span>住房</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"travel"} />
+                        <span>出行</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"cloth"} />
+                        <span>衣服</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"eat"} />
+                        <span>吃饭</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"dwell"} />
+                        <span>住房</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"travel"} />
+                        <span>出行</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"cloth"} />
+                        <span>衣服</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"eat"} />
+                        <span>吃饭</span>
                     </li>
                 </ol>
             </TagsSelection>
