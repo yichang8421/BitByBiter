@@ -6,6 +6,7 @@ import Icon from "components/Icon";
 
 const NavWrapper = styled.div`
     //border: 1px solid blue;
+    background: white;
     line-height: 24px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     >ul{
@@ -28,8 +29,11 @@ const NavWrapper = styled.div`
                   }
                   
               &.selected{
-                color: darkgrey;
+                color: #ffd91c;
                 box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+                //.icon{
+                //  fill: none;
+                //}
               }
             }
         }
