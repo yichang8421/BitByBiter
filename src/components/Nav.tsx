@@ -2,7 +2,14 @@ import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import React from "react";
 // @ts-ignore
-import Icon from "components/Icon";
+import NavIcon from "components/NavIcon";
+import LedgerIcon from "icons/layout/ledger.svg";
+import LedgerIconSelected from "icons/layout/ledger_selected.svg";
+import MoneyIcon from "icons/layout/money.svg";
+import MoneyIconSelected from "icons/layout/money_selected.svg";
+import statisticsIcon from "icons/layout/statistics.svg";
+import statisticsIconSelected from "icons/layout/statistics_selected.svg";
+
 
 const NavWrapper = styled.div`
     //border: 1px solid blue;
@@ -41,26 +48,18 @@ const NavWrapper = styled.div`
 `;
 
 const Nav = () => {
+    // @ts-ignore
     return (
         <NavWrapper>
             <ul>
                 <li>
-                    <NavLink to="/ledger" activeClassName="selected">
-                        <Icon name={"ledger"} />
-                        <span>收支明细</span>
-                    </NavLink>
+                    <NavIcon pathname={"/ledger"} name={"收支明细"} defaultIcon={LedgerIcon} selectedIcon={LedgerIconSelected}/>
                 </li>
                 <li>
-                    <NavLink to="/money" activeClassName="selected">
-                        <Icon name={"money"}/>
-                        <span>记一笔</span>
-                    </NavLink>
+                    <NavIcon pathname={"/money"} name={"记一笔"} defaultIcon={MoneyIcon} selectedIcon={MoneyIconSelected}/>
                 </li>
                 <li>
-                    <NavLink to="/statistics" activeClassName="selected">
-                        <Icon name={"statistics"}/>
-                        <span>统计</span>
-                    </NavLink>
+                    <NavIcon pathname={"/statistics"} name={"记一笔"} defaultIcon={statisticsIcon} selectedIcon={statisticsIconSelected}/>
                 </li>
             </ul>
         </NavWrapper>
