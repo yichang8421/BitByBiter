@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CalculatorOutput from "../../components/CalculatorOutput";
 
 const RecordSelectionWrapper = styled.section`
     border:1px solid red;
@@ -49,18 +50,6 @@ const RecordSelectionWrapper = styled.section`
         overflow: hidden;    
     }
 `;
-
-const CalculatorOutput = (Props: {displayNumberPad:()=>void,output:string})=>{
-    return (
-        <div className="output" onClick={()=> {
-            Props.displayNumberPad();
-            console.log("hello");
-        }}>
-            {Props.output}
-        </div>
-    );
-}
-
 
 const RecordSelection = (Props: {displayNumberPad:()=>void,output:string})=>{
     return(
