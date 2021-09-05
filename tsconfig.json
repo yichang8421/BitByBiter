@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es5",
     "baseUrl": "src",
     "lib": [

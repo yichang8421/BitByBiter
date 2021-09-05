@@ -17,7 +17,6 @@ type Props = {
 
 const Icon = (props: Props) => {
     const location = useLocation();
-    console.log(location);
 
     // @ts-ignore
     const defaultIconId = props.defaultIcon["id"];
