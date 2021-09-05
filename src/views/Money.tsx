@@ -3,7 +3,27 @@ import React from "react";
 import styled from "styled-components";
 import Icon from "components/Icon";
 
-const NotesSelection = styled.section``;
+const NotesSection = styled.section`
+    background: #f5f5f5;
+    padding: 0 16px;
+    margin-left: 10px;
+    font-size: 14px;
+    > label{
+        display: flex;
+        align-items: center;
+        > span{
+            margin-right: 16px;
+            white-space: nowrap;
+        }
+        > input{
+            display: block;
+            width: 100%;
+            height: 72px;
+            background: none;
+            border:none;
+        }
+    }
+`;
 
 const TagsSelection = styled.section`
     background: #fff;
@@ -15,10 +35,10 @@ const TagsSelection = styled.section`
         flex-wrap: wrap;
         >li{
           &.selected{
-            //background: #ff6200;
-            //border:1px solid red;
-            //box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-            //border-radius: 20px;
+            background: #ff6200;
+            border:1px solid red;
+            box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+            border-radius: 20px;
           }
             
             text-align: center;
@@ -30,7 +50,10 @@ const TagsSelection = styled.section`
             font-family: inherit;
             font-size: 14px;
             font-weight: bolder;
-            margin: 8px 12px;
+            margin: 8px 8px;
+            margin-left: 30px;
+            margin-right: 20px;
+            padding: 2px 4px;
         }
         
         > .addBtn{
@@ -58,10 +81,12 @@ const NumperPadSelection = styled.section``;
 function Money() {
     return (
         <Layout>
-            <NotesSelection>
-                <label>备注</label>
-                <input type="text"/>
-            </NotesSelection>
+            <NotesSection>
+                <label>
+                    <span>备注</span>
+                    <input type="text"  placeholder="此处添加备注"/>
+                </label>
+            </NotesSection>
             <TagsSelection>
                 <ol>
                     <button className="selected addBtn">
