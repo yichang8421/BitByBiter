@@ -51,7 +51,7 @@ const RecordSelectionWrapper = styled.section`
     }
 `;
 
-const RecordSelection = (Props: {displayNumberPad:()=>void,output:string})=>{
+const RecordSelection = (Props: {displayCalPad:()=>void,output:string})=>{
     return(
         <RecordSelectionWrapper>
             <label>
@@ -67,7 +67,7 @@ const RecordSelection = (Props: {displayNumberPad:()=>void,output:string})=>{
                 </select></div>
             </label>
             <CalculatorOutput
-                displayNumberPad = {Props.displayNumberPad}
+                displayCalPad = {Props.displayCalPad}
                 output = {Props.output}
             />
         </RecordSelectionWrapper>

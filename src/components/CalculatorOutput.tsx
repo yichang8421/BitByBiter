@@ -1,13 +1,12 @@
 type Props ={
-    displayNumberPad:()=>void,
+    displayCalPad:()=>void,
     output:string
 }
 
-const CalculatorOutput = (Props:Props)=>{
+const CalculatorOutput:React.FC<Props> = (Props:Props)=>{
     return (
         <div className="output" onClick={()=> {
-            Props.displayNumberPad();
-            console.log("hello");
+            Props.displayCalPad();
         }}>
             {Props.output}
         </div>

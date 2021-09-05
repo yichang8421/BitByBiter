@@ -17,12 +17,13 @@ function Money() {
     return (
         <Layout>
             <RecordSelection
-                displayNumberPad={displayPad}
+                displayCalPad={displayPad}
                 output={"100"}
             />
             <NoteSection/>
             <TagsSelection/>
-            {displayCalculator && <CalculatorPad/>}
+            {/*{displayCalculator && <CalculatorPad/>}*/}
+            <CalculatorPad/>
         </Layout>
     );
 }
