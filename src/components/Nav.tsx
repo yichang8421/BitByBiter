@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
 import React from "react";
 // @ts-ignore
 import NavIcon from "components/NavIcon";
@@ -38,9 +37,9 @@ const NavWrapper = styled.div`
               &.selected{
                 color: #ffd91c;
                 box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-                //.icon{
-                //  fill: none;
-                //}
+                .icon{
+                  fill: red;
+                }
               }
             }
         }

@@ -8,8 +8,9 @@ const NotesSelection = styled.section``;
 const TagsSelection = styled.section`
     background: #fff;
     border:1px solid red;
+    overflow-x: hidden;
     > ol{
-        padding:0 16px;
+        margin:0 -12px;
         display: flex;
         flex-wrap: wrap;
         >li{
@@ -17,20 +18,37 @@ const TagsSelection = styled.section`
             //background: #ff6200;
             //border:1px solid red;
             //box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-            border-radius: 20px;
+            //border-radius: 20px;
           }
             
-            width: 20%;            
             text-align: center;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            //flex-direction: column;
+            //justify-content: center;
+            align-items: center;
+            padding: 3px 18px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: bolder;
+            margin: 8px 12px;
+        }
+        
+        > .addBtn{
+            //border:none;
+            border-radius: 20px;
+            box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+            background: inherit;
+            text-align: center;
+            display: flex;
             align-items: center;
             padding: 6px 18px;
             font-family: inherit;
             font-size: 14px;
             font-weight: bolder;
             margin: 8px 8px;
+            margin-left: 30px;
+            margin-right: 20px;
+            padding: 2px 4px;
         }
     }
 `;
@@ -46,48 +64,52 @@ function Money() {
             </NotesSelection>
             <TagsSelection>
                 <ol>
-                    <li className="selected">
-                        <Icon name={"add"} />
+                    <button className="selected addBtn">
+                        <Icon name={"add"}/>
                         添加
-                    </li>
+                    </button>
                     <li className="selected">
-                        <Icon name={"cloth"} />
+                        <Icon name={"cloth"}/>
                         <span>衣服</span>
                     </li>
                     < li className="selected">
-                        <Icon name={"eat"} />
+                        <Icon name={"eat"}/>
                         <span>吃饭</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"dwell"} />
+                        <Icon name={"dwell"}/>
                         <span>住房</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"travel"} />
+                        <Icon name={"travel"}/>
                         <span>出行</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"cloth"} />
+                        <Icon name={"cloth"}/>
                         <span>衣服</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"eat"} />
+                        <Icon name={"eat"}/>
                         <span>吃饭</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"dwell"} />
+                        <Icon name={"dwell"}/>
                         <span>住房</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"travel"} />
+                        <Icon name={"travel"}/>
                         <span>出行</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"cloth"} />
+                        <Icon name={"cloth"}/>
                         <span>衣服</span>
                     </li>
                     <li className="selected">
-                        <Icon name={"eat"} />
+                        <Icon name={"eat"}/>
+                        <span>吃饭</span>
+                    </li>
+                    <li className="selected">
+                        <Icon name={"eat"}/>
                         <span>吃饭</span>
                     </li>
                 </ol>
