@@ -5,7 +5,7 @@ const CalculatorPadSelectionWrapper = styled.section``;
 
 const CalculatorPad = () => {
     return (<CalculatorPadSelectionWrapper>
-        <div className="result">100</div>
+        {/*<div className="result">100</div>*/}
         <div>
             <button>1</button>
             <button>2</button>

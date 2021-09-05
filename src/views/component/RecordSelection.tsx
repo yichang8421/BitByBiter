@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import React, {useCallback, useState} from "react";
 
 const RecordSelectionWrapper = styled.section`
     border:1px solid red;
@@ -64,14 +63,6 @@ const CalculatorOutput = (Props: {displayNumberPad:()=>void,output:string})=>{
 
 
 const RecordSelection = (Props: {displayNumberPad:()=>void,output:string})=>{
-    const [displayCalculator, setDisplayCalculator] = useState(false);
-    const displayPad = useCallback(() => {
-        setDisplayCalculator(()=>true);
-    }, []);
-    const hidePad = useCallback(() => {
-        setDisplayCalculator(()=>false);
-    }, []);
-
     return(
         <RecordSelectionWrapper>
             <label>
@@ -81,7 +72,6 @@ const RecordSelection = (Props: {displayNumberPad:()=>void,output:string})=>{
                 <div className="selectDiv"><select
                     name="types"
                     id="types"
-                    // onChange={onToggle}
                 >
                     <option value="1">收入</option>
                     <option value="2">支出</option>

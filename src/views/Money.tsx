@@ -20,12 +20,9 @@ function Money() {
                 displayNumberPad={displayPad}
                 output={"100"}
             />
-            {displayCalculator && <div>
-                mother fucker!
-            </div>}
             <NoteSection/>
             <TagsSelection/>
-            <CalculatorPad/>
+            {displayCalculator && <CalculatorPad/>}
         </Layout>
     );
 }
