@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    border: 1px solid red;
+    //border: 1px solid red;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `;
 
 const Main = styled.div`
-    border: 1px solid green;
+    //border: 1px solid green;
     flex-grow: 1;
     overflow: auto;
 `;
@@ -21,7 +21,7 @@ const Layout = (props: any) => {
     return (
         <div>
             <Wrapper>
-                <Main>
+                <Main className={props.className}>
                     {props.children}
                 </Main>
                 <Nav/>

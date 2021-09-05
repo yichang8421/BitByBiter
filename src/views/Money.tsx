@@ -4,6 +4,13 @@ import NoteSection from "./component/NoteSection";
 import TagsSelection from "./component/TagsSelection";
 import CalculatorPad from "./component/CalculatorPad";
 import RecordSelection from "./component/RecordSelection";
+import styled from "styled-components";
+
+const MyLayout = styled(Layout)`
+    //border:1px solid blue;
+    display: flex;
+    flex-direction: column;
+`;
 
 function Money() {
     const [displayCalculator, setDisplayCalculator] = useState(false);
@@ -15,16 +22,16 @@ function Money() {
     }, []);
 
     return (
-        <Layout>
+        <MyLayout>
             <RecordSelection
                 displayCalPad={displayPad}
                 output={"100"}
             />
             <NoteSection/>
             <TagsSelection/>
-            {/*{displayCalculator && <CalculatorPad/>}*/}
-            <CalculatorPad/>
-        </Layout>
+            {displayCalculator && <CalculatorPad/>}
+            {/*<CalculatorPad/>*/}
+        </MyLayout>
     );
 }
 

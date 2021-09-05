@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CalculatorOutput from "../../components/CalculatorOutput";
 
 const RecordSelectionWrapper = styled.section`
-    border:1px solid red;
+    //border:1px solid red;
     padding: 22px 6px;
     padding-left: 26px;
     font-size: 14px;
@@ -22,7 +22,7 @@ const RecordSelectionWrapper = styled.section`
             > select{
                 display: block;
                 padding: 6px 2px;
-                            border:1px solid red;
+                            //border:1px solid red;
                 font-weight: bolder;
                 background: yellowgreen;
                 //border:none;

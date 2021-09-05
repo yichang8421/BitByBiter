@@ -5,7 +5,7 @@ const CalPadWrapper = styled.section`
     display: flex;
     flex-direction: column;
     > .pad { 
-    border:1px solid red;
+    //border:1px solid red;
         >button{
             margin-bottom:0;
             background: #f4faff;

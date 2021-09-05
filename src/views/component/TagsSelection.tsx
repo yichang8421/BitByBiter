@@ -1,10 +1,20 @@
 import styled from "styled-components";
 import Icon from "../../components/Icon";
 import React from "react";
+import img from "../../img/记账vue版.jpg";
 
 const TagsSelectionWrapper = styled.section`
-    background: #fff;
+    background:#fff;
+    //background-image:url(${img});
+    //position: relative;
+  //flex-grow: 1;
+  //opacity: 0.5;
+  //background-size: 70%;
+  //background-repeat: no-repeat;
+  //background-position: bottom 0px right 46px;
+  //flex-direction: column-reverse;
     overflow-x: hidden;
+    flex-grow: 1;
     > ol{
         margin:0 -12px;
         display: flex;
@@ -53,7 +63,7 @@ const TagsSelectionWrapper = styled.section`
 `;
 
 const TagsSelection = () => {
-    return(
+    return (
         <TagsSelectionWrapper>
             <ol>
                 <button className="selected addBtn">
