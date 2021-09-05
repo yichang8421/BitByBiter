@@ -20,20 +20,27 @@ const RecordSelection = styled.section`
             white-space: nowrap;
             font-weight: bolder;
         }
-        > select{
-            display: block;
-            padding: 6px 2px;
-                        border:1px solid red;
-            font-weight: bolder;
-            background: yellowgreen;
-            //border:none;
-            border-radius: 20px;
+        >.selectDiv {
+            > select{
+                display: block;
+                padding: 6px 2px;
+                            border:1px solid red;
+                font-weight: bolder;
+                background: yellowgreen;
+                //border:none;
+                border-radius: 20px;
+                >option{
+                  background: yellow;
+                }
+            }
         }
     }
     > .output{
         display: block;
         width: 100%;
         background: white;
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
         margin-left: 16px;
         margin-right: 16px;
         font-size: 28px;
@@ -138,14 +145,14 @@ function Money() {
                     <span>
                         收支类型
                     </span>
-                    <select
+                    <div className="selectDiv"><select
                         name="types"
                         id="types"
                         // onChange={onToggle}
                     >
                         <option value="1">收入</option>
                         <option value="2">支出</option>
-                    </select>
+                    </select></div>
                 </label>
                 <div className="output">
                     hello
