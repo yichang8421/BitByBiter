@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import React, {useCallback, useState} from "react";
 import NoteSection from "./component/NoteSection";
-import TagsSelection from "./component/TagsSelection";
+import {TagsSelection} from "./component/TagsSelection";
 import CalculatorPad from "./component/CalculatorPad";
 import RecordSelection from "./component/RecordSelection";
 import styled from "styled-components";

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Icon from "../../components/Icon";
-import React from "react";
+import React, {useContext, useState} from "react";
 import img from "../../img/记账vue版.jpg";
 
-const TagsSelectionWrapper = styled.section`
+const Wrapper = styled.section`
     background:#fff;
     //background-image:url(${img});
     //position: relative;
@@ -21,10 +21,10 @@ const TagsSelectionWrapper = styled.section`
         flex-wrap: wrap;
         >li{
           &.selected{
-            //background: #ff6200;
+            background: #ffba40;
             //border:1px solid red;
-            //box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-            //border-radius: 20px;
+            box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+            border-radius: 20px;
           }
             
             text-align: center;
@@ -62,14 +62,60 @@ const TagsSelectionWrapper = styled.section`
     }
 `;
 
-const TagsSelection = () => {
+const TagsSelection: React.FC = () => {
+    const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+    function onAddTag() {
+        const addTagName = window.prompt("请输入添加标签名");
+        if (addTagName) {
+            setTags(() => [
+                ...tags,
+                addTagName
+            ]);
+        }
+    }
+
+    function onToggleTag(tag: string) {
+        const index = selectedTags.indexOf(tag);
+        if (index >= 0) {
+            setSelectedTags(() =>
+                selectedTags.filter(t => t !== tag)
+            );
+        } else {
+            setSelectedTags(() => [
+                ...selectedTags,
+                tag
+            ]);
+        }
+    }
+
+    const getClass = (tag:string)=>
+        selectedTags.indexOf(tag) >= 0 ?
+        "selected" :
+        ""
+
     return (
-        <TagsSelectionWrapper>
+        <Wrapper>
             <ol>
-                <button className="selected addBtn">
+                <button
+                    onClick={onAddTag}
+                    className="selected addBtn">
                     <Icon name={"add"}/>
                     添加
                 </button>
+                {
+                    tags.map(tag =>
+                        <li
+                            key={tag}
+                            onClick={() =>
+                                onToggleTag(tag)
+                            }
+                            className={getClass(tag)}
+                        >{tag}</li>
+                    )
+                }
+
                 <li className="selected">
                     <Icon name={"cloth"}/>
                     <span>衣服</span>
@@ -115,8 +161,8 @@ const TagsSelection = () => {
                     <span>吃饭</span>
                 </li>
             </ol>
-        </TagsSelectionWrapper>
+        </Wrapper>
     );
 };
 
-export default TagsSelection;
+export {TagsSelection};
