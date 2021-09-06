@@ -63,7 +63,7 @@ const Wrapper = styled.section`
 `;
 
 const TagsSelection: React.FC = () => {
-    const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
+    const [tags, setTags] = useState<string[]>(["衣服", "吃饭", "住房", "出行"]);
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
     function onAddTag() {
@@ -90,10 +90,10 @@ const TagsSelection: React.FC = () => {
         }
     }
 
-    const getClass = (tag:string)=>
+    const getClass = (tag: string) =>
         selectedTags.indexOf(tag) >= 0 ?
-        "selected" :
-        ""
+            "selected" :
+            "";
 
     return (
         <Wrapper>
@@ -105,61 +105,32 @@ const TagsSelection: React.FC = () => {
                     添加
                 </button>
                 {
-                    tags.map(tag =>
-                        <li
-                            key={tag}
-                            onClick={() =>
-                                onToggleTag(tag)
-                            }
-                            className={getClass(tag)}
-                        >{tag}</li>
+                    tags.map(tag => {
+                            const mapNameToIcon: Record<string, string> = {
+                                "衣服": "cloth",
+                                "吃饭": "eat",
+                                "住房": "dwell",
+                                "出行": "travel"
+                            };
+                            const mapIcon = mapNameToIcon[tag];
+                            return (<li
+                                key={tag}
+                                onClick={() =>
+                                    onToggleTag(tag)
+                                }
+                                className={
+                                    [
+                                        getClass(tag),
+                                        mapIcon ? mapIcon : "others"
+                                    ].join(" ")
+                                }
+                            >
+                                <Icon name={mapIcon ? mapIcon : "others"}/>
+                                <span>{tag}</span>
+                            </li>);
+                        }
                     )
                 }
-
-                <li className="selected">
-                    <Icon name={"cloth"}/>
-                    <span>衣服</span>
-                </li>
-                < li className="selected">
-                    <Icon name={"eat"}/>
-                    <span>吃饭</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"dwell"}/>
-                    <span>住房</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"travel"}/>
-                    <span>出行</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"cloth"}/>
-                    <span>衣服</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"eat"}/>
-                    <span>吃饭</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"dwell"}/>
-                    <span>住房</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"travel"}/>
-                    <span>出行</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"cloth"}/>
-                    <span>衣服</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"eat"}/>
-                    <span>吃饭</span>
-                </li>
-                <li className="selected">
-                    <Icon name={"eat"}/>
-                    <span>吃饭</span>
-                </li>
             </ol>
         </Wrapper>
     );
