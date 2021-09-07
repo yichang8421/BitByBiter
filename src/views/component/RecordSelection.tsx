@@ -1,35 +1,40 @@
 import styled from "styled-components";
 import CalculatorOutput from "../../components/CalculatorOutput";
+import {useCallback, useMemo, useState} from "react";
 
-const RecordSelectionWrapper = styled.section`
+const Wrapper = styled.section`
     //border:1px solid red;
     padding: 22px 6px;
     padding-left: 26px;
     font-size: 14px;
     display: flex;
     justify-content: space-between;
-    > label{
+    > .type{
         display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: left;
+        
         > span{
             //margin-right: 8px;
             white-space: nowrap;
             font-weight: bolder;
         }
+        
         >.selectDiv {
-            > select{
+            display: block;
+            padding: 6px 2px;
+            font-weight: bolder;
+            background: yellowgreen;
+            border-radius: 20px;
+            
+            > .option{
+                position: absolute;
                 display: block;
                 padding: 6px 2px;
-                            //border:1px solid red;
                 font-weight: bolder;
-                background: yellowgreen;
-                //border:none;
                 border-radius: 20px;
-                >option{
-                  background: yellow;
-                }
+                background: yellow;
             }
         }
     }
@@ -51,27 +56,55 @@ const RecordSelectionWrapper = styled.section`
     }
 `;
 
-const RecordSelection = (Props: {displayCalPad:()=>void,output:string})=>{
-    return(
-        <RecordSelectionWrapper>
-            <label>
+type Props = {
+    displayCalPad: () => void,
+    output: string
+}
+
+const RecordSelection: React.FC<Props> = (Props: Props) => {
+    const [recordType, setRecordType] = useState("-");
+    const [displayDiv, setDisplayDiv] = useState(false);
+
+    const onToggle = useCallback(() => {
+        setDisplayDiv(() => !displayDiv);
+    }, [displayDiv]);
+
+    const selectType = useMemo(() => {
+        return () => {
+            setRecordType(() => {
+                return recordType === "-" ? "+" : "-";
+            });
+        };
+    }, [recordType]);
+
+    return (
+        <Wrapper>
+            <div className="type">
                     <span>
                         收支类型
                     </span>
-                <div className="selectDiv"><select
-                    name="types"
-                    id="types"
+                <div
+                    className="selectDiv"
+                    onClick={onToggle}
                 >
-                    <option value="1">收入</option>
-                    <option value="2">支出</option>
-                </select></div>
-            </label>
+                    <div className="selectDiv">
+                        {recordType === "-" ? "支出" : "收入"}
+                    </div>
+                    {displayDiv && (
+                        <div
+                            className="option"
+                            onClick={selectType}>
+                            {recordType === "-" ? "收入" : "支出"}
+                        </div>
+                    )}
+                </div>
+            </div>
             <CalculatorOutput
-                displayCalPad = {Props.displayCalPad}
-                output = {Props.output}
+                displayCalPad={Props.displayCalPad}
+                output={Props.output}
             />
-        </RecordSelectionWrapper>
+        </Wrapper>
     );
 };
 
-export default RecordSelection;
+export {RecordSelection};
