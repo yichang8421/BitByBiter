@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import CalculatorOutput from "../../components/CalculatorOutput";
-import {useCallback, useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
+import Icon from "../../components/Icon";
 
 const Wrapper = styled.section`
     //border:1px solid red;
@@ -21,20 +22,39 @@ const Wrapper = styled.section`
             font-weight: bolder;
         }
         
-        >.selectDiv {
-            display: block;
+        >.selectBtn {
+            display: flex;
+            width: 64px;
+            position: relative;
+            align-items: center;
+            justify-content: center;
             padding: 6px 2px;
             font-weight: bolder;
+            border: none;
+            &:active {
+                box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+            }
             background: yellowgreen;
-            border-radius: 20px;
+            border-radius: 10px;
             
             > .option{
                 position: absolute;
+                top: 32px;
+                left: 0;
+                height: 32px;
+                width: 100%;
                 display: block;
+                text-align: center;
                 padding: 6px 2px;
                 font-weight: bolder;
-                border-radius: 20px;
-                background: yellow;
+                border-radius: 10px;
+                background: #e7f2ff;
+                &:hover{
+                    background: #feb940;
+                }
+                &:active {
+                    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+                }
             }
         }
     }
@@ -83,13 +103,14 @@ const RecordSelection: React.FC<Props> = (Props: Props) => {
                     <span>
                         收支类型
                     </span>
-                <div
-                    className="selectDiv"
+                <button
+                    className="selectBtn"
                     onClick={onToggle}
                 >
-                    <div className="selectDiv">
+                    <div>
                         {recordType === "-" ? "支出" : "收入"}
                     </div>
+                    <Icon name={"down"}/>
                     {displayDiv && (
                         <div
                             className="option"
@@ -97,7 +118,7 @@ const RecordSelection: React.FC<Props> = (Props: Props) => {
                             {recordType === "-" ? "收入" : "支出"}
                         </div>
                     )}
-                </div>
+                </button>
             </div>
             <CalculatorOutput
                 displayCalPad={Props.displayCalPad}
