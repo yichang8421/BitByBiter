@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Icon from "../../components/Icon";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import img from "../../img/记账vue版.jpg";
 
 const Wrapper = styled.section`
