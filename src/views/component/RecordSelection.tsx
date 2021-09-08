@@ -72,7 +72,7 @@ const Wrapper = styled.section`
         text-align: right;
         white-space: nowrap;
         text-overflow: ellipsis;
-        overflow: hidden;    
+        overflow: auto;    
     }
 `;
 
