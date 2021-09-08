@@ -78,10 +78,17 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
     if (output.length === 0) {
         setOutput(() => "0");
     }
-    if (Number(output) === NaN) {
-        setOutput(() => "Error");
-        console.error("Error");
-    }
+
+    const isOperator = (character: string) => {
+        return ["+", "-", "×", "÷"].indexOf(character) > -1;
+    };
+
+    const endWidthDecimal = () => {
+        return output.charAt(output.length - 1) === ".";
+    };
+    const endWidthOperator = () => {
+        return isOperator(output.charAt(output.length - 1));
+    };
 
     const onClickButtonWrapper = (e: React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent;
@@ -107,9 +114,8 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                 isOperatorAdded = false;
                 break;
             case ".":
-                if (!isDecimalAdded && output.indexOf(".") === -1) {
+                if (!isDecimalAdded) {
                     setOutput(() => output + text);
-                    console.log(isDecimalAdded);
                     isDecimalAdded = true;
                     isOperatorAdded = true;
                 }
@@ -119,20 +125,31 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
             case "×":
             case "÷":
                 if (!isOperatorAdded) {
-                    setOutput(() => output + text);
+                    if (endWidthOperator()) {
+                        setOutput(() => output + "0" + text);
+                    }else{
+                        setOutput(() => output + text);
+                    }
                     isDecimalAdded = false;
                     isOperatorAdded = true;
                 }
                 break;
             case "%":
                 setOutput(() => {return (Number(output) / 100).toString();});
+                const _output = (Number(output) / 100).toString();
+                if (_output.indexOf(".") !== -1) {
+                    isDecimalAdded = true;
+                    console.log(isDecimalAdded);
+                }
                 break;
             case "⇐":
                 if (output.length === 1) {
                     setOutput(() => "");
-                    isOperatorAdded = false;
-                    isDecimalAdded = false;
                 } else {
+                    if (endWidthDecimal() || endWidthOperator()) {
+                        isDecimalAdded = false;
+                        isOperatorAdded = false;
+                    }
                     setOutput(() => output.slice(0, -1));
                 }
                 break;
