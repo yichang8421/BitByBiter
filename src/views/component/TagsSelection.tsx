@@ -62,7 +62,11 @@ const Wrapper = styled.section`
     }
 `;
 
-const TagsSelection: React.FC = () => {
+type Props = {
+    hidePad: () => void
+}
+
+const TagsSelection: React.FC<Props> = (Props: Props) => {
     const [tags, setTags] = useState<string[]>(["衣服", "吃饭", "住房", "出行"]);
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
@@ -99,8 +103,12 @@ const TagsSelection: React.FC = () => {
         <Wrapper>
             <ol>
                 <button
-                    onClick={onAddTag}
-                    className="selected addBtn">
+                    onClick={() => {
+                        Props.hidePad();
+                        onAddTag();
+                    }}
+                    className="selected addBtn"
+                >
                     <Icon name={"add"}/>
                     添加
                 </button>

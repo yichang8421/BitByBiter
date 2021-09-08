@@ -23,7 +23,11 @@ const Wrapper = styled.section`
     }
 `;
 
-const NoteSection: React.FC = () => {
+type Props = {
+    hidePad: () => void
+}
+
+const NoteSection: React.FC<Props> = (Props: Props) => {
     const [note, setNote] = useState("");
     const refInput = useRef<HTMLInputElement>(null);
     const currentInput = refInput.current;
@@ -36,7 +40,7 @@ const NoteSection: React.FC = () => {
     };
     return (
         <Wrapper>
-            <label>
+            <label onClick={Props.hidePad}>
                 <span>备注</span>
                 <input
                     type="text"

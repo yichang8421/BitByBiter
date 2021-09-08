@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import React, {useCallback, useState} from "react";
 import {NoteSection} from "./component/NoteSection";
 import {TagsSelection} from "./component/TagsSelection";
-import CalculatorPad from "./component/CalculatorPad";
+import {CalculatorPad} from "./component/CalculatorPad";
 import {RecordSelection} from "./component/RecordSelection";
 import styled from "styled-components";
 
@@ -17,19 +17,29 @@ function Money() {
     const displayPad = useCallback(() => {
         setDisplayCalculator(() => true);
     }, []);
-    // const hidePad = useCallback(() => {
-    //     setDisplayCalculator(() => false);
-    // }, []);
+    const hidePad = useCallback(() => {
+        setDisplayCalculator(() => false);
+    }, []);
+    const [output, setOutput] = useState("0");
 
     return (
         <MyLayout>
             <RecordSelection
                 displayCalPad={displayPad}
-                output={"100"}
+                output={output}
             />
-            <NoteSection/>
-            <TagsSelection/>
-            {displayCalculator && <CalculatorPad/>}
+            <NoteSection
+                hidePad={hidePad}
+            />
+            <TagsSelection
+                hidePad={hidePad}
+            />
+            {displayCalculator &&
+            <CalculatorPad
+                hidePad={hidePad}
+                output={output}
+                setOutput={setOutput}
+            />}
             {/*<CalculatorPad/>*/}
         </MyLayout>
     );

@@ -41,7 +41,7 @@ const Wrapper = styled.section`
                 position: absolute;
                 top: 32px;
                 left: 0;
-                height: 32px;
+                height: 100%;
                 width: 100%;
                 display: block;
                 text-align: center;
