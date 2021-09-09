@@ -87,7 +87,7 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                     isDecimalAdded = false;
                     setOutput(() => "");
                 } else {
-                    setOutput(() => output.slice(0, -1));
+                    setOutput(() => output.slice(0, -1) || "");
 
                     console.log(output);
                     if (endWidthOperator(output)) {
@@ -136,6 +136,7 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                 console.log("SAVE");
                 break;
             default:
+                setOutput(() => "");
                 isOperatorAdded = false;
                 isDecimalAdded = false;
                 break;
