@@ -2,6 +2,7 @@ import React from "react";
 
 let isDecimalAdded = false;
 let isOperatorAdded = false;
+let haveCalculated = false;
 
 const isOperator = (string: string) => {
     return ["+", "-", "×", "÷"].indexOf(string) > -1;
@@ -33,7 +34,13 @@ const generateOutput:(props: Props) => void = (props:Props):void => {
         case "7":
         case "8":
         case "9":
-            if (output === "0") {
+            if(haveCalculated){
+                console.log(haveCalculated);
+                setOutput(() => text);
+                isOperatorAdded = false;
+                isDecimalAdded = false;
+                haveCalculated = false;
+            }else if (output === "0") {
                 setOutput(() => text);
             } else {
                 setOutput(() => output + text);
@@ -51,6 +58,7 @@ const generateOutput:(props: Props) => void = (props:Props):void => {
         case "-":
         case "×":
         case "÷":
+            haveCalculated = false;
             if (!isOperatorAdded) {
                 if (endWidthOperator(output)) {
                     setOutput(() => output + "0" + text);
@@ -96,6 +104,7 @@ const generateOutput:(props: Props) => void = (props:Props):void => {
             isDecimalAdded = false;
             break;
         case "=":
+            haveCalculated = true;
             let result = output
                 .replace(new RegExp(/×/g), "*")
                 .replace(new RegExp(/÷/g), "/");

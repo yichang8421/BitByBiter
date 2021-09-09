@@ -20,6 +20,16 @@ function Money() {
     const hidePad = useCallback(() => {
         setDisplayCalculator(() => false);
     }, []);
+
+    type RecordType = "-" | "=";
+
+    const [selected, setSelected] = useState({
+        tags: [] as string[],
+        note: "",
+        recordType: "-" as RecordType,
+        amount: 0
+    });
+
     const [output, setOutput] = useState("0");
 
     return (
