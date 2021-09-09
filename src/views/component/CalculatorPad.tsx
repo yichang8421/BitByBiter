@@ -83,11 +83,11 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
         return ["+", "-", "×", "÷"].indexOf(character) > -1;
     };
 
-    const endWidthDecimal = () => {
-        return output.charAt(output.length - 1) === ".";
+    const endWidthDecimal = (string:string) => {
+        return string.charAt(string.length - 1) === ".";
     };
-    const endWidthOperator = () => {
-        return isOperator(output.charAt(output.length - 1));
+    const endWidthOperator = (string:string) => {
+        return isOperator(string.charAt(output.length - 1));
     };
 
     const onClickButtonWrapper = (e: React.MouseEvent) => {
@@ -125,9 +125,9 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
             case "×":
             case "÷":
                 if (!isOperatorAdded) {
-                    if (endWidthOperator()) {
+                    if (endWidthOperator(output)) {
                         setOutput(() => output + "0" + text);
-                    }else{
+                    } else {
                         setOutput(() => output + text);
                     }
                     isDecimalAdded = false;
@@ -136,7 +136,7 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                 break;
             case "%":
                 setOutput(() => {return (Number(output) / 100).toString();});
-                const _output = (Number(output) / 100).toString();
+                const _output = (Number(output) * 0.01).toString();
                 if (_output.indexOf(".") !== -1) {
                     isDecimalAdded = true;
                     console.log(isDecimalAdded);
@@ -145,12 +145,22 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
             case "⇐":
                 if (output.length === 1) {
                     setOutput(() => "");
+                    isOperatorAdded = false;
+                    isOperatorAdded = false;
                 } else {
-                    if (endWidthDecimal() || endWidthOperator()) {
-                        isDecimalAdded = false;
+                    if (endWidthDecimal(output)) {
                         isOperatorAdded = false;
                     }
+                    if(endWidthDecimal(output)){
+                        isOperatorAdded = false;
+                    }
+
                     setOutput(() => output.slice(0, -1));
+
+                    const _output = output.slice(0,-1);
+                    if (_output.indexOf(".") !== -1) {
+                        isDecimalAdded = true;
+                    }
                 }
                 break;
             case "AC":
@@ -159,7 +169,29 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                 isDecimalAdded = false;
                 break;
             case "=":
-                console.log("=");
+                let result = output
+                    .replace(new RegExp(/×/g), "*")
+                    .replace(new RegExp(/÷/g), "/");
+
+                if (result.match(/(\D+)$/g)) {
+                    result += "0";
+                }
+
+                setOutput(() => {
+                    return Number(eval(result)
+                        .toFixed(9))
+                        .toString();
+                });
+
+                isOperatorAdded = false;
+                isDecimalAdded = false;
+
+                const _result = Number(eval(result)
+                    .toFixed(9))
+                    .toString();
+                if (_result.indexOf(".") !== -1) {
+                    isDecimalAdded = true;
+                }
                 break;
             case "SAVE":
                 console.log("SAVE");
