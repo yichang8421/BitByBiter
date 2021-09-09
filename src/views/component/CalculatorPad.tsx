@@ -1,39 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import Icon from "../../components/Icon";
-
-const Wrapper = styled.section`
-    display: flex;
-    flex-direction: column;
-    >.hiddenPad {
-        border: none;
-        width: 100%;
-        height: 24px;
-        
-        &:active {
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-        }
-    }
-    
-    > .pad { 
-        >button{
-            margin-bottom:0;
-            background: #f4faff;
-            font-weight: bolder;
-            font-size: 20px;
-            width: 20%;
-            height: 64px;
-            float: left;
-            border: none;
-            display: block;
-
-            &:active {
-                box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-                color:#00aeff;
-            }
-        }
-    }
-`;
+import {Wrapper} from "../../components/CalculatorOutput/CalculatorWrapper";
 
 type Props = {
     hidePad: () => void,
@@ -54,10 +21,10 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
         return ["+", "-", "×", "÷"].indexOf(string) > -1;
     };
 
-    const endWidthDecimal = (string:string) => {
+    const endWidthDecimal = (string: string) => {
         return string.charAt(string.length - 1) === ".";
     };
-    const endWidthOperator = (string:string) => {
+    const endWidthOperator = (string: string) => {
         return isOperator(string.charAt(output.length - 1));
     };
 
@@ -115,22 +82,22 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                 break;
             case "⇐":
                 if (output.length === 1) {
+                    console.log(output);
+                    isOperatorAdded = false;
+                    isDecimalAdded = false;
                     setOutput(() => "");
-                    isOperatorAdded = false;
-                    isOperatorAdded = false;
                 } else {
-                    if (endWidthDecimal(output)) {
-                        isOperatorAdded = false;
-                    }
-                    if(endWidthDecimal(output)){
-                        isOperatorAdded = false;
-                    }
-
                     setOutput(() => output.slice(0, -1));
 
-                    const _output = output.slice(0,-1);
-                    if (_output.indexOf(".") !== -1) {
+                    console.log(output);
+                    if (endWidthOperator(output)) {
+                        console.log("operator");
+                        isOperatorAdded = false;
                         isDecimalAdded = true;
+                    }
+                    if (endWidthDecimal(output)) {
+                        console.log("decimal");
+                        isDecimalAdded = false;
                     }
                 }
                 break;
@@ -167,6 +134,10 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                 break;
             case "SAVE":
                 console.log("SAVE");
+                break;
+            default:
+                isOperatorAdded = false;
+                isDecimalAdded = false;
                 break;
         }
     };
