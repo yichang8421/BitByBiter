@@ -50,8 +50,8 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
         setOutput(() => "0");
     }
 
-    const isOperator = (character: string) => {
-        return ["+", "-", "×", "÷"].indexOf(character) > -1;
+    const isOperator = (string: string) => {
+        return ["+", "-", "×", "÷"].indexOf(string) > -1;
     };
 
     const endWidthDecimal = (string:string) => {
@@ -61,7 +61,7 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
         return isOperator(string.charAt(output.length - 1));
     };
 
-    const onClickButtonWrapper = (e: React.MouseEvent) => {
+    const onCalculator = (e: React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent;
         if (!text) {
             return;
@@ -144,6 +144,7 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
                     .replace(new RegExp(/×/g), "*")
                     .replace(new RegExp(/÷/g), "/");
 
+                // if(endWidthDecimal(result)||endWidthOperator(result))
                 if (result.match(/(\D+)$/g)) {
                     result += "0";
                 }
@@ -178,7 +179,7 @@ const CalculatorPad: React.FC<Props> = (Props: Props) => {
             </button>
             <div
                 className="pad clearfix"
-                onClick={onClickButtonWrapper}
+                onClick={onCalculator}
             >
                 <button>1</button>
                 <button>2</button>
