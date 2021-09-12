@@ -4,6 +4,7 @@ import React from "react";
 import img from "../../img/记账vue版.jpg";
 import {NavLink} from "react-router-dom";
 import {useTags} from "useTags";
+import {createId} from "lib/createId";
 
 const Wrapper = styled.section`
     background:#fff;
@@ -84,7 +85,7 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
         if (addTagName) {
             setTags(() => [
                 ...tags,
-                {id: Math.random(), name: addTagName}
+                {id: createId(), name: addTagName}
             ]);
         }
     }
