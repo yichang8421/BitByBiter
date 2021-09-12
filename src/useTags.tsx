@@ -1,7 +1,12 @@
 import {useState} from "react";
 
 const useTags = () => {
-    const [tags, setTags] = useState<string[]>(["衣服", "吃饭", "住房", "出行"]);
+    const [tags, setTags] = useState<{ id: number; name: string }[]>([
+        {id: 1, name: "衣服"},
+        {id: 2, name: "吃饭"},
+        {id: 3, name: "住房"},
+        {id: 4, name: "出行"}
+    ]);
     return {tags, setTags};
 };
 

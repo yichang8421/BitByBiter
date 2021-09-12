@@ -64,8 +64,8 @@ const Button = styled.button`
 
 type Props = {
     hidePad: () => void;
-    value: string[];
-    onChange: (selected: string[]) => void;
+    value: number[];
+    onChange: (selected: number[]) => void;
 }
 
 const mapNameToIcon: Record<string, string> = {
@@ -77,32 +77,32 @@ const mapNameToIcon: Record<string, string> = {
 
 const TagsSelection: React.FC<Props> = (props: Props) => {
     const {tags, setTags} = useTags();
-    const selectedTags = props.value;
+    const selectedTagIds = props.value;
 
     function onAddTag() {
         const addTagName = window.prompt("请输入添加标签名");
         if (addTagName) {
             setTags(() => [
                 ...tags,
-                addTagName
+                {id: Math.random(), name: addTagName}
             ]);
         }
     }
 
-    function onToggleTag(tag: string) {
-        const index = selectedTags.indexOf(tag);
+    function onToggleTag(tagId: number) {
+        const index = selectedTagIds.indexOf(tagId);
         if (index >= 0) {
-            props.onChange(selectedTags.filter(t => t !== tag));
+            props.onChange(selectedTagIds.filter(t => t !== tagId));
         } else {
             props.onChange([
-                ...selectedTags,
-                tag
+                ...selectedTagIds,
+                tagId
             ]);
         }
     }
 
-    const getClass = (tag: string) =>
-        selectedTags.indexOf(tag) >= 0 ?
+    const getClass = (tagId: number) =>
+        selectedTagIds.indexOf(tagId) >= 0 ?
             "selected" :
             "";
 
@@ -130,21 +130,21 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
                 </Button>
                 {
                     tags.map(tag => {
-                        const mapIcon = mapNameToIcon[tag];
+                        const mapIcon = mapNameToIcon[tag.name];
                         return (<li
-                            key={tag}
+                            key={tag.id}
                             onClick={() =>
-                                onToggleTag(tag)
+                                onToggleTag(tag.id)
                             }
                             className={
                                 [
-                                    getClass(tag),
+                                    getClass(tag.id),
                                     mapIcon ? mapIcon : "others"
                                 ].join(" ")
                             }
                         >
                             <Icon name={mapIcon ? mapIcon : "others"}/>
-                            <span>{tag}</span>
+                            <span>{tag.name}</span>
                         </li>);
                     })
                 }

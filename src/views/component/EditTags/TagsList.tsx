@@ -70,7 +70,7 @@ const Space = styled.div`
 `;
 
 const TagsList = () => {
-    const {tags, setTags} = useTags();
+    const {tags} = useTags();
     return (
         <Layout>
             <TitleWrapper>
@@ -83,9 +83,9 @@ const TagsList = () => {
             </TitleWrapper>
             <TagList>
                 {tags.map(tag =>
-                    <li key={tag}>
+                    <li key={tag.id}>
                         <Link to={"/edit/" + tag}>
-                            <span>{tag}</span>
+                            <span>{tag.name}</span>
                         </Link>
                         <Icon name={"delete"}/>
                     </li>

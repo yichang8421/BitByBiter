@@ -24,7 +24,7 @@ function Money() {
     type RecordType = "-" | "+";
 
     const [selected, setSelected] = useState({
-        tags: [] as string[],
+        tagIds: [] as number[],
         note: "",
         recordType: "-" as RecordType,
         amount: 0
@@ -45,7 +45,7 @@ function Money() {
 
     return (
         <MyLayout>
-            {selected.tags.join(",")}
+            {selected.tagIds.join(",")}
             <hr/>
             {selected.note}
             <hr/>
@@ -68,9 +68,9 @@ function Money() {
             />
             <TagsSelection
                 hidePad={hidePad}
-                value={selected.tags}
-                onChange={tags => {
-                    onChange({tags});
+                value={selected.tagIds}
+                onChange={tagIds => {
+                    onChange({tagIds});
                 }}
             />
             {displayCalculator &&
