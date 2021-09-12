@@ -23,17 +23,11 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: React.FC<Props> = (props) => {
-    const {label, hidePad, ...rest} = props;
+    const {label, hidePad, children, ...rest} = props;
     return (
         <Label onClick={props.hidePad}>
-            <span>props.label</span>
-            <input
-                type={props.type}
-                placeholder={props.placeholder}
-                defaultValue={props.defaultValue}
-                // ref={refInput}
-                onBlur={props.onBlur}
-            />
+            <span>{props.label}</span>
+            <input {...rest}/>
         </Label>
     );
 };
