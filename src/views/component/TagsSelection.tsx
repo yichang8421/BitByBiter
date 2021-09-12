@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Icon from "../../components/Icon";
-import React, {useState} from "react";
+import React from "react";
 import img from "../../img/记账vue版.jpg";
 import {NavLink} from "react-router-dom";
+import {useTags} from "useTags";
 
 const Wrapper = styled.section`
     background:#fff;
@@ -92,7 +93,7 @@ const mapNameToIcon: Record<string, string> = {
 };
 
 const TagsSelection: React.FC<Props> = (props: Props) => {
-    const [tags, setTags] = useState<string[]>(["衣服", "吃饭", "住房", "出行"]);
+    const {tags, setTags} = useTags();
     const selectedTags = props.value;
 
     function onAddTag() {
