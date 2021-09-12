@@ -10,7 +10,7 @@ import {ElementCenter} from "../../../components/CalculatorOutput/ElementCenter"
 import {Space} from "../../../components/CalculatorOutput/Space";
 
 type Params = {
-    id: string
+    idString: string
 }
 
 const Topbar = styled.header`
@@ -32,10 +32,10 @@ const InputWrapper = styled.div`
 `;
 
 const EditTag: React.FC = () => {
-    const {findTag} = useTags();
-    let {id} = useParams<Params>();
+    const {findTag, updateTag} = useTags();
+    let {idString} = useParams<Params>();
 
-    const tag = findTag(Number(id));
+    const tag = findTag(Number(idString));
     return (
         <Layout>
             <Topbar>
@@ -45,10 +45,13 @@ const EditTag: React.FC = () => {
             </Topbar>
             <InputWrapper>
                 <Input
-                    label={"编辑"}
+                    label={"标签名"}
                     type={"text"}
                     placeholder={"标签名"}
                     value={tag.name}
+                    onChange={(e) => {
+                        updateTag(tag.id, {name:e.target.value});
+                    }}
                 />
             </InputWrapper>
             <Space/>

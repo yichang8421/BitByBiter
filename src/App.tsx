@@ -29,7 +29,7 @@ function App() {
                     <Route exact path="/edit">
                         <TagsList/>
                     </Route>
-                    <Route exact path="/edit/:id">
+                    <Route exact path="/edit/:idString">
                         <EditTag/>
                     </Route>
                     <Redirect exact from="/" to="money"/>
