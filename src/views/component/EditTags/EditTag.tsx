@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "components/Layout";
 import {useTags} from "useTags";
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useHistory} from "react-router-dom";
 import Icon from "components/Icon";
 import {Button} from "components/MyButton";
 import styled from "styled-components";
@@ -42,6 +42,12 @@ const EditTag: React.FC = () => {
 
     const tag = findTag(Number(idString));
 
+    const history = useHistory();
+    const onClickBack = () => {
+        // window.history.back();
+        history.goBack();
+    };
+
     const tagContent = (tag: { id: number; name: string }) => (
         <div>
             <InputWrapper>
@@ -61,17 +67,10 @@ const EditTag: React.FC = () => {
             <Space/>
             <Space/>
             <ElementCenter>
-                <Link
-                    to={"/edit/"}
-                    onClick={() => {
-                        deleteTag(tag.id);
-                        console.log("删除成功");
-                    }}>
-                    <Button onClick={() => {
-                        deleteTag(tag.id);
-                        window.history.back();
-                    }}>删除标签</Button>
-                </Link>
+                <Button onClick={() => {
+                    deleteTag(tag.id);
+                    onClickBack();
+                }}>删除标签</Button>
             </ElementCenter>
         </div>);
 
@@ -84,7 +83,7 @@ const EditTag: React.FC = () => {
                 <span>编辑标签</span>
                 <Icon/>
             </Topbar>
-            {tag ? tagContent(tag) : <div>Tag 不存在</div>}
+            {tag && tagContent(tag)}
         </Layout>
     );
 };
