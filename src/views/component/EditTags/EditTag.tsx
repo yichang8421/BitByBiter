@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "components/Layout";
 import {useTags} from "useTags";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Icon from "components/Icon";
 import {Button} from "components/MyButton";
 import styled from "styled-components";
-import {Input} from "../../../components/Imput";
-import {ElementCenter} from "../../../components/CalculatorOutput/ElementCenter";
-import {Space} from "../../../components/CalculatorOutput/Space";
+import {Input} from "components/Imput";
+import {ElementCenter} from "components/CalculatorOutput/ElementCenter";
+import {Space} from "components/CalculatorOutput/Space";
 
 type Params = {
     idString: string
@@ -23,6 +23,11 @@ const Topbar = styled.header`
     background: white;
     padding: 0 16px;
     line-height: 40px;
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 const InputWrapper = styled.div`
@@ -32,17 +37,13 @@ const InputWrapper = styled.div`
 `;
 
 const EditTag: React.FC = () => {
-    const {findTag, updateTag} = useTags();
+    const {findTag, updateTag, deleteTag} = useTags();
     let {idString} = useParams<Params>();
 
     const tag = findTag(Number(idString));
-    return (
-        <Layout>
-            <Topbar>
-                <Icon name={"left"}/>
-                <span>编辑标签</span>
-                <Icon/>
-            </Topbar>
+
+    const tagContent = (tag: { id: number; name: string }) => (
+        <div>
             <InputWrapper>
                 <Input
                     label={"标签名"}
@@ -50,7 +51,7 @@ const EditTag: React.FC = () => {
                     placeholder={"标签名"}
                     value={tag.name}
                     onChange={(e) => {
-                        updateTag(tag.id, {name:e.target.value});
+                        updateTag(tag.id, {name: e.target.value});
                     }}
                 />
             </InputWrapper>
@@ -60,8 +61,20 @@ const EditTag: React.FC = () => {
             <Space/>
             <Space/>
             <ElementCenter>
-                <Button>删除标签</Button>
+                <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
             </ElementCenter>
+        </div>);
+
+    return (
+        <Layout>
+            <Topbar>
+                <Link to={"/edit/"}>
+                    <Icon name={"left"}/>
+                </Link>
+                <span>编辑标签</span>
+                <Icon/>
+            </Topbar>
+            {tag ? tagContent(tag) : <div>Tag 不存在</div>}
         </Layout>
     );
 };
