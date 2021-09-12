@@ -48,6 +48,7 @@ const EditTag: React.FC = () => {
                     label={"编辑"}
                     type={"text"}
                     placeholder={"标签名"}
+                    value={tag.name}
                 />
             </InputWrapper>
             <Space/>
