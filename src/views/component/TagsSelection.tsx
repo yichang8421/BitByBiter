@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Icon from "../../components/Icon";
 import React, {useState} from "react";
 import img from "../../img/记账vue版.jpg";
+import {NavLink} from "react-router-dom";
 
 const Wrapper = styled.section`
     background:#fff;
@@ -32,7 +33,6 @@ const Wrapper = styled.section`
             //flex-direction: column;
             //justify-content: center;
             align-items: center;
-            padding: 3px 18px;
             font-family: inherit;
             font-size: 14px;
             font-weight: bolder;
@@ -50,7 +50,23 @@ const Wrapper = styled.section`
             text-align: center;
             display: flex;
             align-items: center;
-            padding: 6px 18px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: bolder;
+            margin: 8px 8px;
+            margin-left: 30px;
+            margin-right: 20px;
+            padding: 2px 4px;
+        }
+        
+        .editBtn{
+            //border:none;
+            border-radius: 20px;
+            box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+            background: inherit;
+            text-align: center;
+            display: flex;
+            align-items: center;
             font-family: inherit;
             font-size: 14px;
             font-weight: bolder;
@@ -102,12 +118,23 @@ const TagsSelection: React.FC<Props> = (Props: Props) => {
     return (
         <Wrapper>
             <ol>
+                <NavLink to={"/edit"} activeClassName="selected">
+                    <button
+                        onClick={() => {
+                            Props.hidePad();
+                        }}
+                        className="editBtn"
+                    >
+                        <Icon name={"edit"}/>
+                        编辑
+                    </button>
+                </NavLink>
                 <button
                     onClick={() => {
                         Props.hidePad();
                         onAddTag();
                     }}
-                    className="selected addBtn"
+                    className="addBtn"
                 >
                     <Icon name={"add"}/>
                     添加

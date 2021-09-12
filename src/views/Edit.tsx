@@ -1,12 +1,12 @@
-import Layout from "../components/Layout";
 import React from "react";
+import Layout from "../components/Layout";
 
-function Statistics() {
+const Edit = () => {
     return (
         <Layout>
             <h2>Edit</h2>
         </Layout>
     );
-}
+};
 
-export default Statistics;
+export {Edit};
