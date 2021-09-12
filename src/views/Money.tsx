@@ -30,6 +30,17 @@ function Money() {
         amount: 0
     });
 
+    // type Selected = typeof selected
+
+    const onChange = (obj: Partial<typeof selected>) => {
+        setSelected(() => {
+            return {
+                ...selected,
+                ...obj
+            };
+        });
+    };
+
     const [output, setOutput] = useState(selected.amount.toString());
 
     return (
@@ -44,52 +55,34 @@ function Money() {
                 displayCalPad={displayPad}
                 output={output}
                 value={selected.recordType}
-                onChange={(recordType) => {
-                    setSelected(() => {
-                        return {
-                            ...selected,
-                            recordType: recordType
-                        };
-                    });
+                onChange={recordType => {
+                    onChange({recordType});
                 }}
             />
             <NoteSection
                 hidePad={hidePad}
                 value={selected.note}
-                onChange={(note) => {
-                    setSelected(() => {
-                        return {
-                            ...selected,
-                            note: note
-                        };
-                    });
+                onChange={note => {
+                    onChange({note});
                 }}
             />
             <TagsSelection
                 hidePad={hidePad}
                 value={selected.tags}
-                onChange={(tags) => setSelected(() => {
-                    return {
-                        ...selected,
-                        tags: tags
-                    };
-                })}
+                onChange={tags => {
+                    onChange({tags});
+                }}
             />
             {displayCalculator &&
             <CalculatorPad
                 hidePad={hidePad}
                 output={output}
                 // value={selected.amount}
-                onOutputChange={(output: string) => {
+                onOutputChange={output => {
                     setOutput(() => output);
                 }}
-                onAmountChange={(amount) => {
-                    setSelected(() => {
-                        return {
-                            ...selected,
-                            amount: amount
-                        };
-                    });
+                onAmountChange={amount => {
+                    onChange({amount});
                 }}
             />}
             {/*<CalculatorPad/>*/}
