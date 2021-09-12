@@ -148,24 +148,23 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
                 </button>
                 {
                     tags.map(tag => {
-                            const mapIcon = mapNameToIcon[tag];
-                            return (<li
-                                key={tag}
-                                onClick={() =>
-                                    onToggleTag(tag)
-                                }
-                                className={
-                                    [
-                                        getClass(tag),
-                                        mapIcon ? mapIcon : "others"
-                                    ].join(" ")
-                                }
-                            >
-                                <Icon name={mapIcon ? mapIcon : "others"}/>
-                                <span>{tag}</span>
-                            </li>);
-                        }
-                    )
+                        const mapIcon = mapNameToIcon[tag];
+                        return (<li
+                            key={tag}
+                            onClick={() =>
+                                onToggleTag(tag)
+                            }
+                            className={
+                                [
+                                    getClass(tag),
+                                    mapIcon ? mapIcon : "others"
+                                ].join(" ")
+                            }
+                        >
+                            <Icon name={mapIcon ? mapIcon : "others"}/>
+                            <span>{tag}</span>
+                        </li>);
+                    })
                 }
             </ol>
         </Wrapper>
