@@ -84,6 +84,13 @@ type Props = {
     onChange: (selected: string[]) => void;
 }
 
+const mapNameToIcon: Record<string, string> = {
+    ["衣服"]: "cloth",
+    ["吃饭"]: "eat",
+    ["住房"]: "dwell",
+    ["出行"]: "travel"
+};
+
 const TagsSelection: React.FC<Props> = (props: Props) => {
     const [tags, setTags] = useState<string[]>(["衣服", "吃饭", "住房", "出行"]);
     const selectedTags = props.value;
@@ -141,12 +148,6 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
                 </button>
                 {
                     tags.map(tag => {
-                            const mapNameToIcon: Record<string, string> = {
-                                "衣服": "cloth",
-                                "吃饭": "eat",
-                                "住房": "dwell",
-                                "出行": "travel"
-                            };
                             const mapIcon = mapNameToIcon[tag];
                             return (<li
                                 key={tag}
