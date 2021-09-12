@@ -24,19 +24,14 @@ const useTags = () => {
         return result;
     };
 
-    const updateTag = (id: number, obj: { name: string }) => {
-        const index = findTagIndex(id);
-        const tagsClone = JSON.parse(JSON.stringify(tags));
-        tagsClone.splice(index, 1, {id: id, name: obj.name});
-        // splice() 方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。
-        setTags(tagsClone);
+    const updateTag = (id: number, {name}: { name: string }) => {
+        setTags(tags.map(tag => tag.id === id ? {id, name} : tag));
     };
 
     const deleteTag = (id: number) => {
-        const index = findTagIndex(id);
-        const tagsClone = JSON.parse(JSON.stringify(tags));
-        tagsClone.splice(index, 1);
-        setTags(tagsClone);
+        setTags(() => {
+            return tags.filter(tag => tag.id !== id);
+        });
     };
 
     return {tags, setTags, findTag, findTagIndex, updateTag, deleteTag};
