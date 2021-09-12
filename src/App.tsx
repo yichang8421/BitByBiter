@@ -3,7 +3,7 @@ import {HashRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 import Money from "./views/Money";
 import Ledger from "./views/Ledger";
 import Statistics from "./views/Statistics";
-import {Edit} from "./views/Edit";
+import {EditTags} from "./views/component/EditTags/EditTags";
 import NoMatch from "./views/NoMatch";
 import styled from "styled-components";
 
@@ -25,11 +25,8 @@ function App() {
                     <Route path="/statistics">
                         <Statistics/>
                     </Route>
-                    <Route path="/statistics">
-                        <Statistics/>
-                    </Route>
                     <Route path="/edit">
-                        <Edit />
+                        <EditTags />
                     </Route>
                     <Redirect exact from="/" to="ledger"/>
                     <Route path="*">

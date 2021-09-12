@@ -4,7 +4,7 @@ import React from "react";
 function Statistics() {
     return (
         <Layout>
-            <h2>Edit</h2>
+            <h2>Statistics</h2>
         </Layout>
     );
 }

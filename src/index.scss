@@ -35,8 +35,8 @@ a {
     color: inherit;
 }
 
-:focus{
-    outline:none;
+:focus {
+    outline: none;
 }
 
 .icon {
@@ -44,8 +44,14 @@ a {
     height: 1.5em;
 }
 
-.clearfix::after{
-    content:"";
+.clearfix::after {
+    content: "";
     display: block;
     clear: both;
+}
+
+.oneLine {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

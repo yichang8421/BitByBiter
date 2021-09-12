@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CalculatorOutput from "../../components/CalculatorOutput";
+import CalculatorOutput from "../../components/CalculatorOutput/CalculatorOutput";
 import React, {useCallback, useMemo, useState} from "react";
 import Icon from "../../components/Icon";
 

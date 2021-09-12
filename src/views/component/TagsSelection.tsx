@@ -42,41 +42,24 @@ const Wrapper = styled.section`
             margin-right: 20px;
             padding: 2px 4px;
         }
-        
-        > .addBtn{
-            //border:none;
-            border-radius: 20px;
-            box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-            background: inherit;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: bolder;
-            margin: 8px 8px;
-            margin-left: 30px;
-            margin-right: 20px;
-            padding: 2px 4px;
-        }
-        
-        .editBtn{
-            //border:none;
-            border-radius: 20px;
-            box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-            background: inherit;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: bolder;
-            margin: 8px 8px;
-            margin-left: 30px;
-            margin-right: 20px;
-            padding: 2px 4px;
-        }
     }
+`;
+
+const Button = styled.button`
+    //border:none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
+    background: inherit;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bolder;
+    margin: 8px 8px;
+    margin-left: 30px;
+    margin-right: 20px;
+    padding: 2px 4px;
 `;
 
 type Props = {
@@ -127,26 +110,24 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
         <Wrapper>
             <ol>
                 <NavLink to={"/edit"} activeClassName="selected">
-                    <button
+                    <Button
                         onClick={() => {
                             props.hidePad();
                         }}
-                        className="editBtn"
                     >
                         <Icon name={"edit"}/>
                         编辑
-                    </button>
+                    </Button>
                 </NavLink>
-                <button
+                <Button
                     onClick={() => {
                         props.hidePad();
                         onAddTag();
                     }}
-                    className="addBtn"
                 >
                     <Icon name={"add"}/>
                     添加
-                </button>
+                </Button>
                 {
                     tags.map(tag => {
                         const mapIcon = mapNameToIcon[tag];
