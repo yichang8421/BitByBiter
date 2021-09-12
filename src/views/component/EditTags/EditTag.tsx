@@ -61,10 +61,17 @@ const EditTag: React.FC = () => {
             <Space/>
             <Space/>
             <ElementCenter>
-                <Button onClick={() => {
-                    deleteTag(tag.id);
-                    window.history.back();
-                }}>删除标签</Button>
+                <Link
+                    to={"/edit/"}
+                    onClick={() => {
+                        deleteTag(tag.id);
+                        console.log("删除成功");
+                    }}>
+                    <Button onClick={() => {
+                        deleteTag(tag.id);
+                        window.history.back();
+                    }}>删除标签</Button>
+                </Link>
             </ElementCenter>
         </div>);
 
