@@ -1,9 +1,10 @@
 import React from "react";
-import Layout from "../../../components/Layout";
+import Layout from "components/Layout";
 import {useTags} from "useTags";
 import styled from "styled-components";
-import Icon from "../../../components/Icon";
+import Icon from "components/Icon";
 import {Link} from "react-router-dom";
+import { Button } from "components/MyButton";
 
 const TitleWrapper = styled.div`
     text-align: center;
@@ -43,21 +44,6 @@ const TagList = styled.ol`
     }
 `;
 
-const Button = styled.button`
-    color:#2a9e78;
-    font-size: 16px;
-    font-weight: bolder;
-    border: 1px solid #2a9e78;
-    padding: 8px 12px;
-    background: #f4faff;
-    border-radius: 10px;
-    &:active {
-        box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-        color:#00aeff;
-        background: #d9efff;
-    }
-`;
-
 const ElementCenter = styled.div`
     display: flex;
     justify-content: center;
@@ -78,7 +64,7 @@ const TagsList = () => {
                     <Icon name={"left"}/>
                 </Link>
                 <Title>
-                    编辑标签
+                    标签
                 </Title>
             </TitleWrapper>
             <TagList>
