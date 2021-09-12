@@ -76,13 +76,17 @@ const Wrapper = styled.section`
     }
 `;
 
+type RecordType = "-" | "+";
+
 type Props = {
-    displayCalPad: () => void,
-    output: string
+    displayCalPad: () => void;
+    output: string;
+    value: RecordType;
+    onChange: (recordType: RecordType) => void;
 }
 
-const RecordSelection: React.FC<Props> = (Props: Props) => {
-    const [recordType, setRecordType] = useState("-");
+const RecordSelection: React.FC<Props> = (props: Props) => {
+    const recordType = props.value;
     const [displayDiv, setDisplayDiv] = useState(false);
 
     const onToggle = useCallback(() => {
@@ -91,9 +95,8 @@ const RecordSelection: React.FC<Props> = (Props: Props) => {
 
     const selectType = useMemo(() => {
         return () => {
-            setRecordType(() => {
-                return recordType === "-" ? "+" : "-";
-            });
+            const newRecordType = recordType === "-" ? "+" : "-";
+            props.onChange(newRecordType);
         };
     }, [recordType]);
 
@@ -121,8 +124,8 @@ const RecordSelection: React.FC<Props> = (Props: Props) => {
                 </button>
             </div>
             <CalculatorOutput
-                displayCalPad={Props.displayCalPad}
-                output={Props.output}
+                displayCalPad={props.displayCalPad}
+                output={props.output}
             />
         </Wrapper>
     );

@@ -21,7 +21,7 @@ function Money() {
         setDisplayCalculator(() => false);
     }, []);
 
-    type RecordType = "-" | "=";
+    type RecordType = "-" | "+";
 
     const [selected, setSelected] = useState({
         tags: [] as string[],
@@ -30,25 +30,67 @@ function Money() {
         amount: 0
     });
 
-    const [output, setOutput] = useState("0");
+    const [output, setOutput] = useState(selected.amount.toString());
 
     return (
         <MyLayout>
+            {selected.tags.join(",")}
+            <hr/>
+            {selected.note}
+            <hr/>
+            {selected.amount}
+
             <RecordSelection
                 displayCalPad={displayPad}
                 output={output}
+                value={selected.recordType}
+                onChange={(recordType) => {
+                    setSelected(() => {
+                        return {
+                            ...selected,
+                            recordType: recordType
+                        };
+                    });
+                }}
             />
             <NoteSection
                 hidePad={hidePad}
+                value={selected.note}
+                onChange={(note) => {
+                    setSelected(() => {
+                        return {
+                            ...selected,
+                            note: note
+                        };
+                    });
+                }}
             />
             <TagsSelection
                 hidePad={hidePad}
+                value={selected.tags}
+                onChange={(tags) => setSelected(() => {
+                    return {
+                        ...selected,
+                        tags: tags
+                    };
+                })}
             />
             {displayCalculator &&
             <CalculatorPad
                 hidePad={hidePad}
                 output={output}
-                setOutput={setOutput}
+                // value={selected.amount}
+                onOutputChange={(output: string) => {
+                    setOutput(() => output);
+                }}
+                onAmountChange={(amount) => {
+                    setSelected(() => {
+                        return {
+                            ...selected,
+                            amount: amount
+                        };
+                    });
+                }}
             />}
             {/*<CalculatorPad/>*/}
         </MyLayout>

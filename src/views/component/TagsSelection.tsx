@@ -79,12 +79,14 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-    hidePad: () => void
+    hidePad: () => void;
+    value: string[];
+    onChange: (selected: string[]) => void;
 }
 
-const TagsSelection: React.FC<Props> = (Props: Props) => {
+const TagsSelection: React.FC<Props> = (props: Props) => {
     const [tags, setTags] = useState<string[]>(["衣服", "吃饭", "住房", "出行"]);
-    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const selectedTags = props.value;
 
     function onAddTag() {
         const addTagName = window.prompt("请输入添加标签名");
@@ -99,11 +101,9 @@ const TagsSelection: React.FC<Props> = (Props: Props) => {
     function onToggleTag(tag: string) {
         const index = selectedTags.indexOf(tag);
         if (index >= 0) {
-            setSelectedTags(() =>
-                selectedTags.filter(t => t !== tag)
-            );
+            props.onChange(selectedTags.filter(t => t !== tag));
         } else {
-            setSelectedTags(() => [
+            props.onChange([
                 ...selectedTags,
                 tag
             ]);
@@ -121,7 +121,7 @@ const TagsSelection: React.FC<Props> = (Props: Props) => {
                 <NavLink to={"/edit"} activeClassName="selected">
                     <button
                         onClick={() => {
-                            Props.hidePad();
+                            props.hidePad();
                         }}
                         className="editBtn"
                     >
@@ -131,7 +131,7 @@ const TagsSelection: React.FC<Props> = (Props: Props) => {
                 </NavLink>
                 <button
                     onClick={() => {
-                        Props.hidePad();
+                        props.hidePad();
                         onAddTag();
                     }}
                     className="addBtn"

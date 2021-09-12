@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 
 const Wrapper = styled.section`
     background: #f5f5f5;
@@ -24,23 +24,23 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-    hidePad: () => void
+    hidePad: () => void;
+    value: string;
+    onChange: (value: string) => void;
 }
 
-const NoteSection: React.FC<Props> = (Props: Props) => {
-    const [note, setNote] = useState("");
+const NoteSection: React.FC<Props> = (props: Props) => {
+    const note = props.value;
     const refInput = useRef<HTMLInputElement>(null);
     const currentInput = refInput.current;
     const onBlur = () => {
         if (currentInput) {
-            setNote(() =>
-                currentInput.value
-            );
+            props.onChange(currentInput.value);
         }
     };
     return (
         <Wrapper>
-            <label onClick={Props.hidePad}>
+            <label onClick={props.hidePad}>
                 <span>备注</span>
                 <input
                     type="text"
