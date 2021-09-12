@@ -3,13 +3,23 @@ import Layout from "../../../components/Layout";
 import {useTags} from "useTags";
 import styled from "styled-components";
 import Icon from "../../../components/Icon";
+import {Link} from "react-router-dom";
+
+const TitleWrapper = styled.div`
+    text-align: center;
+    line-height: 42px;
+    .icon{
+        position: absolute;
+        top: 8px;
+        left: 16px;
+    }
+`;
 
 const Title = styled.span`
     font-size: 18px;
     color: #2a9e78;
     font-weight: bolder;
     background: #f5f5f5;
-    line-height: 20px;
     margin: 14px 0;
 `;
 
@@ -26,7 +36,7 @@ const TagList = styled.ol`
         justify-content: space-between;
         align-items: center;
         line-height: 40px;
-        >span{
+        >a{
             flex-grow: 1;
             height: 40px;
         }
@@ -34,15 +44,17 @@ const TagList = styled.ol`
 `;
 
 const Button = styled.button`
-color:#2a9e78;
+    color:#2a9e78;
     font-size: 16px;
     font-weight: bolder;
-    border: none;
+    border: 1px solid #2a9e78;
     padding: 8px 12px;
     background: #f4faff;
+    border-radius: 10px;
     &:active {
         box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-            color:#00aeff;
+        color:#00aeff;
+        background: #d9efff;
     }
 `;
 
@@ -57,17 +69,24 @@ const Space = styled.div`
     height: 16px;
 `;
 
-const EditTags = () => {
+const TagsList = () => {
     const {tags, setTags} = useTags();
     return (
         <Layout>
-            <ElementCenter>
-                <Title>编辑标签</Title>
-            </ElementCenter>
+            <TitleWrapper>
+                <Link to={"/money/"}>
+                    <Icon name={"left"}/>
+                </Link>
+                <Title>
+                    编辑标签
+                </Title>
+            </TitleWrapper>
             <TagList>
                 {tags.map(tag =>
                     <li key={tag}>
-                        <span>{tag}</span>
+                        <Link to={"/edit/" + tag}>
+                            <span>{tag}</span>
+                        </Link>
                         <Icon name={"delete"}/>
                     </li>
                 )}
@@ -81,4 +100,4 @@ const EditTags = () => {
     );
 };
 
-export {EditTags};
+export {TagsList};

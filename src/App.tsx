@@ -3,7 +3,8 @@ import {HashRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 import Money from "./views/Money";
 import Ledger from "./views/Ledger";
 import Statistics from "./views/Statistics";
-import {EditTags} from "./views/component/EditTags/EditTags";
+import {TagsList} from "./views/component/EditTags/TagsList";
+import {EditTag} from "./views/component/EditTags/EditTag";
 import NoMatch from "./views/NoMatch";
 import styled from "styled-components";
 
@@ -16,19 +17,22 @@ function App() {
         <AppWrapper>
             <Router>
                 <Switch>
-                    <Route path="/money">
+                    <Route exact path="/money">
                         <Money/>
                     </Route>
-                    <Route path="/ledger">
+                    <Route exact path="/ledger">
                         <Ledger/>
                     </Route>
-                    <Route path="/statistics">
+                    <Route exact path="/statistics">
                         <Statistics/>
                     </Route>
-                    <Route path="/edit">
-                        <EditTags />
+                    <Route exact path="/edit">
+                        <TagsList/>
                     </Route>
-                    <Redirect exact from="/" to="ledger"/>
+                    <Route exact path="/edit/:tag">
+                        <EditTag/>
+                    </Route>
+                    <Redirect exact from="/" to="money"/>
                     <Route path="*">
                         <NoMatch/>
                     </Route>
