@@ -5,6 +5,8 @@ import styled from "styled-components";
 import Icon from "components/Icon";
 import {Link} from "react-router-dom";
 import { Button } from "components/MyButton";
+import {ElementCenter} from "../../../components/CalculatorOutput/ElementCenter";
+import {Space} from "../../../components/CalculatorOutput/Space";
 
 const TitleWrapper = styled.div`
     text-align: center;
@@ -42,17 +44,6 @@ const TagList = styled.ol`
             height: 40px;
         }
     }
-`;
-
-const ElementCenter = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
-
-const Space = styled.div`
-    height: 16px;
 `;
 
 const TagsList = () => {

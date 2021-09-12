@@ -5,6 +5,9 @@ import {useParams} from "react-router-dom";
 import Icon from "components/Icon";
 import {Button} from "components/MyButton";
 import styled from "styled-components";
+import {Input} from "../../../components/Imput";
+import {ElementCenter} from "../../../components/CalculatorOutput/ElementCenter";
+import {Space} from "../../../components/CalculatorOutput/Space";
 
 type Params = {
     id: string
@@ -22,6 +25,12 @@ const Topbar = styled.header`
     line-height: 40px;
 `;
 
+const InputWrapper = styled.div`
+    background: white;
+    margin-top: 16px;
+    padding:0 16px;
+`;
+
 const EditTag: React.FC = () => {
     const {findTag} = useTags();
     let {id} = useParams<Params>();
@@ -34,16 +43,21 @@ const EditTag: React.FC = () => {
                 <span>编辑标签</span>
                 <Icon/>
             </Topbar>
-            <div>
-                <label>
-                    <span>备注</span>
-                    <input
-                        type="text"
-                        placeholder="标签名"
-                    />
-                </label>
-            </div>
-            <Button>删除标签</Button>
+            <InputWrapper>
+                <Input
+                    label={"编辑"}
+                    type={"text"}
+                    placeholder={"标签名"}
+                />
+            </InputWrapper>
+            <Space/>
+            <Space/>
+            <Space/>
+            <Space/>
+            <Space/>
+            <ElementCenter>
+                <Button>删除标签</Button>
+            </ElementCenter>
         </Layout>
     );
 };

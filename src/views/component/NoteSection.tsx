@@ -4,7 +4,7 @@ import {Input} from "../../components/Imput";
 
 const Wrapper = styled.section`
     background: #f5f5f5;
-    padding: 0 16px;
+    padding: 6px 16px;
     margin-left: 10px;
     font-size: 14px;
 `;
@@ -22,7 +22,13 @@ const NoteSection: React.FC<Props> = (props: Props) => {
     };
     return (
         <Wrapper>
-            <Input label={"备注"} hidePad={props.hidePad} type={"text"} value={note} onChange={onChange}/>
+            <Input
+                label={"备注"}
+                hidePad={props.hidePad}
+                type={"text"}
+                placeholder={"此处添加备注"}
+                value={note}
+                onChange={onChange}/>
         </Wrapper>
     );
 };
