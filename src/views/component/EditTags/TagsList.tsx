@@ -62,7 +62,7 @@ const TagsList = () => {
                 {tags.map(tag =>
                     <li key={tag.id}>
                         <Link to={"/edit/" + tag.id}>
-                            <span>{tag.id}:{tag.name}</span>
+                            <span>{tag.name}</span>
                         </Link>
                         <Icon
                             name={"delete"}
