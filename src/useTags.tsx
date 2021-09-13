@@ -9,7 +9,17 @@ const defaultTags = [
 ];
 
 const useTags = () => {
-    const [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags);
+    const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+
+    function addTag() {
+        const addTagName = window.prompt("请输入添加标签名");
+        if (addTagName) {
+            setTags(() => [
+                ...tags,
+                {id: createId(), name: addTagName}
+            ]);
+        }
+    }
 
     const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
 
@@ -34,7 +44,7 @@ const useTags = () => {
         });
     };
 
-    return {tags, setTags, findTag, findTagIndex, updateTag, deleteTag};
+    return {addTag, tags, setTags, findTag, findTagIndex, updateTag, deleteTag};
 };
 
 export {useTags};

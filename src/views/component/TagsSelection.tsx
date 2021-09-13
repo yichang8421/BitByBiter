@@ -4,7 +4,6 @@ import React from "react";
 import img from "../../img/记账vue版.jpg";
 import {NavLink} from "react-router-dom";
 import {useTags} from "useTags";
-import {createId} from "lib/createId";
 
 const Wrapper = styled.section`
     background:#fff;
@@ -77,18 +76,8 @@ const mapNameToIcon: Record<string, string> = {
 };
 
 const TagsSelection: React.FC<Props> = (props: Props) => {
-    const {tags, setTags} = useTags();
+    const {tags, addTag} = useTags();
     const selectedTagIds = props.value;
-
-    function onAddTag() {
-        const addTagName = window.prompt("请输入添加标签名");
-        if (addTagName) {
-            setTags(() => [
-                ...tags,
-                {id: createId(), name: addTagName}
-            ]);
-        }
-    }
 
     function onToggleTag(tagId: number) {
         const index = selectedTagIds.indexOf(tagId);
@@ -123,7 +112,7 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
                 <Button
                     onClick={() => {
                         props.hidePad();
-                        onAddTag();
+                        addTag();
                     }}
                 >
                     <Icon name={"add"}/>

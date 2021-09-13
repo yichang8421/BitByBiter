@@ -4,7 +4,7 @@ import {useTags} from "useTags";
 import styled from "styled-components";
 import Icon from "components/Icon";
 import {Link} from "react-router-dom";
-import { Button } from "components/MyButton";
+import {Button} from "components/MyButton";
 import {ElementCenter} from "../../../components/CalculatorOutput/ElementCenter";
 import {Space} from "../../../components/CalculatorOutput/Space";
 
@@ -47,7 +47,7 @@ const TagList = styled.ol`
 `;
 
 const TagsList = () => {
-    const {tags} = useTags();
+    const {tags, addTag} = useTags();
     return (
         <Layout>
             <TitleWrapper>
@@ -72,7 +72,14 @@ const TagsList = () => {
             <Space/>
             <Space/>
             <Space/>
-            <ElementCenter><Button>新增标签</Button></ElementCenter>
+            <ElementCenter>
+                <Button
+                    onClick={() => {
+                        addTag();
+                    }}
+                >新增标签
+                </Button>
+            </ElementCenter>
         </Layout>
     );
 };
