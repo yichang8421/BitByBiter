@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {createId} from "lib/createId";
 
 const defaultTags = [
@@ -10,6 +10,14 @@ const defaultTags = [
 
 const useTags = () => {
     const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+
+    useEffect(() => {
+        setTags(JSON.parse(window.localStorage.getItem("tags") || "[]"));
+    }, []);
+
+    useEffect(() => {
+        window.localStorage.setItem("tags", JSON.stringify(tags));
+    }, [tags]);
 
     function addTag() {
         const addTagName = window.prompt("请输入添加标签名");
