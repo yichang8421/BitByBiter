@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {createId} from "lib/createId";
+import {useUpdate} from "./hooks/useUpdate";
 
 const defaultTags = [
     {id: createId(), name: "衣服"},
@@ -15,7 +16,9 @@ const useTags = () => {
         setTags(JSON.parse(window.localStorage.getItem("tags") || "[]"));
     }, []);
 
-    useEffect(() => {
+    useUpdate(() => {
+        console.log("set Item");
+        console.log(JSON.stringify(tags));
         window.localStorage.setItem("tags", JSON.stringify(tags));
     }, [tags]);
 
