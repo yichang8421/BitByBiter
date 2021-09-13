@@ -47,7 +47,7 @@ const TagList = styled.ol`
 `;
 
 const TagsList = () => {
-    const {tags, addTag} = useTags();
+    const {tags, addTag, deleteTag} = useTags();
     return (
         <Layout>
             <TitleWrapper>
@@ -64,7 +64,12 @@ const TagsList = () => {
                         <Link to={"/edit/" + tag.id}>
                             <span>{tag.id}:{tag.name}</span>
                         </Link>
-                        <Icon name={"delete"}/>
+                        <Icon
+                            name={"delete"}
+                            onClick={() => {
+                                deleteTag(tag.id);
+                            }}
+                        />
                     </li>
                 )}
             </TagList>
