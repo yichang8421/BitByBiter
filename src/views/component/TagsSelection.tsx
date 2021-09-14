@@ -3,7 +3,7 @@ import Icon from "../../components/Icon";
 import React from "react";
 import img from "../../img/记账vue版.jpg";
 import {NavLink} from "react-router-dom";
-import {useTags} from "useTags";
+import {useTags} from "hooks/useTags";
 
 const Wrapper = styled.section`
     background:#fff;

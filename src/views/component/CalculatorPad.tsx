@@ -23,6 +23,7 @@ type Props = {
     // value: number;
     onOutputChange: (output: string) => void;
     onAmountChange: (amount: number) => void;
+    onSubmit: () => void;
 }
 
 const CalculatorPad: React.FC<Props> = (props: Props) => {
@@ -30,6 +31,7 @@ const CalculatorPad: React.FC<Props> = (props: Props) => {
 
     const setOutput = (output: string) => {
         props.onOutputChange(output || "0");
+        setResult(output);
     };
 
     const setResult = (output: string) => {
@@ -41,6 +43,7 @@ const CalculatorPad: React.FC<Props> = (props: Props) => {
         }
 
         props.onAmountChange(value);
+        // props.onSubmit();
     };
 
     const onCalculator = (e: React.MouseEvent) => {
@@ -163,7 +166,7 @@ const CalculatorPad: React.FC<Props> = (props: Props) => {
                     break;
                 case "SAVE":
                     if (output.match(/^[-]?\d*\.?\d*$/)) {
-                        setResult(output);
+                        props.onSubmit();
                         window.alert("保存成功");
                     } else {
                         window.alert("只能保存数字哦~");

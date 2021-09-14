@@ -5,6 +5,7 @@ import {TagsSelection} from "./component/TagsSelection";
 import {CalculatorPad} from "./component/CalculatorPad";
 import {RecordSelection} from "./component/RecordSelection";
 import styled from "styled-components";
+import {useRecords} from "../hooks/useRecords";
 
 const MyLayout = styled(Layout)`
     //border:1px solid blue;
@@ -21,8 +22,6 @@ function Money() {
         setDisplayCalculator(() => false);
     }, []);
 
-    type RecordType = "-" | "+";
-
     const [selected, setSelected] = useState({
         tagIds: [] as number[],
         note: "",
@@ -30,7 +29,10 @@ function Money() {
         amount: 0
     });
 
-    // type Selected = typeof selected
+    const [output, setOutput] = useState(selected.amount.toString());
+
+    const {records, addRecord} = useRecords();
+    console.log(records);
 
     const onChange = (obj: Partial<typeof selected>) => {
         setSelected(() => {
@@ -41,15 +43,13 @@ function Money() {
         });
     };
 
-    const [output, setOutput] = useState(selected.amount.toString());
+    const onSubmit = () => {
+        addRecord(selected as RecrodItem);
+    };
 
     return (
         <MyLayout>
-            {selected.tagIds.join(",")}
-            <hr/>
-            {selected.note}
-            <hr/>
-            {selected.amount}
+            {JSON.stringify(selected)}
 
             <RecordSelection
                 displayCalPad={displayPad}
@@ -84,6 +84,7 @@ function Money() {
                 onAmountChange={amount => {
                     onChange({amount});
                 }}
+                onSubmit={onSubmit}
             />}
             {/*<CalculatorPad/>*/}
         </MyLayout>

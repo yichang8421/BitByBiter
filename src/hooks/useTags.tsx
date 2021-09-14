@@ -1,9 +1,14 @@
 import {useEffect, useState} from "react";
 import {createId} from "lib/createId";
-import {useUpdate} from "./hooks/useUpdate";
+import {useUpdate} from "./useUpdate";
+
+type Props = {
+    id: number;
+    name: string
+}
 
 const useTags = () => {
-    const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+    const [tags, setTags] = useState<Props[]>([]);
 
     useEffect(() => {
         let localTags = JSON.parse(window.localStorage.getItem("tags") || "[]");
