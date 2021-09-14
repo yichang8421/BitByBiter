@@ -1,3 +1,5 @@
+/*eslint-disable no-eval */
+
 import React from "react";
 import Icon from "../../components/Icon";
 import {Wrapper} from "../../components/CalculatorOutput/CalculatorWrapper";
@@ -69,7 +71,7 @@ const CalculatorPad: React.FC<Props> = (props: Props) => {
                 case "8":
                 case "9":
                     if (haveCalculated) {
-                        console.log(haveCalculated);
+                        // console.log(haveCalculated);
                         setOutput(text);
                         isOperatorAdded = false;
                         isDecimalAdded = false;
@@ -108,26 +110,26 @@ const CalculatorPad: React.FC<Props> = (props: Props) => {
                     const _output = (Number(output) * 0.01).toString();
                     if (_output.indexOf(".") !== -1) {
                         isDecimalAdded = true;
-                        console.log(isDecimalAdded);
+                        // console.log(isDecimalAdded);
                     }
                     break;
                 case "⇐":
                     if (output.length === 1) {
-                        console.log(output);
+                        // console.log(output);
                         isOperatorAdded = false;
                         isDecimalAdded = false;
                         setOutput("");
                     } else {
                         setOutput(output.slice(0, -1) || "");
 
-                        console.log(output);
+                        // console.log(output);
                         if (endWidthOperator(output)) {
-                            console.log("operator");
+                            // console.log("operator");
                             isOperatorAdded = false;
                             isDecimalAdded = true;
                         }
                         if (endWidthDecimal(output)) {
-                            console.log("decimal");
+                            // console.log("decimal");
                             isDecimalAdded = false;
                         }
                     }

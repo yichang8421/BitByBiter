@@ -12,5 +12,3 @@ export const useUpdate = (fn:()=>void, deps:any[]) => {
         }
     }, deps);
 };
-
-// export {useUpdate};

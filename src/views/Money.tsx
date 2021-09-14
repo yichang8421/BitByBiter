@@ -54,7 +54,7 @@ function Money() {
 
     return (
         <MyLayout>
-            {JSON.stringify(selected)}
+            {/*{JSON.stringify(selected)}*/}
 
             <RecordSelection
                 displayCalPad={displayPad}

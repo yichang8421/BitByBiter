@@ -98,7 +98,7 @@ const RecordSelection: React.FC<Props> = (props: Props) => {
             const newRecordType = recordType === "-" ? "+" : "-";
             props.onChange(newRecordType);
         };
-    }, [recordType]);
+    }, [recordType, props]);
 
     return (
         <Wrapper>

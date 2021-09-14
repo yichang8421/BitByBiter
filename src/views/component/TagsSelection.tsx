@@ -1,3 +1,5 @@
+/*eslint-disable no-useless-computed-key */
+
 import styled from "styled-components";
 import Icon from "../../components/Icon";
 import React from "react";
