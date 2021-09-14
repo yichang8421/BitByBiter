@@ -167,7 +167,9 @@ const CalculatorPad: React.FC<Props> = (props: Props) => {
                 case "SAVE":
                     if (output.match(/^[-]?\d*\.?\d*$/)) {
                         props.onSubmit();
-                        window.alert("保存成功");
+                        isOperatorAdded = false;
+                        isDecimalAdded = false;
+                        haveCalculated = false;
                     } else {
                         window.alert("只能保存数字哦~");
                     }
@@ -176,6 +178,7 @@ const CalculatorPad: React.FC<Props> = (props: Props) => {
                     setOutput("");
                     isOperatorAdded = false;
                     isDecimalAdded = false;
+                    haveCalculated = false;
                     break;
             }
         }

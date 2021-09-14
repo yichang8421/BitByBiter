@@ -22,17 +22,18 @@ function Money() {
         setDisplayCalculator(() => false);
     }, []);
 
-    const [selected, setSelected] = useState({
+    const defaultFormData = {
         tagIds: [] as number[],
         note: "",
         recordType: "-" as RecordType,
         amount: 0
-    });
+    };
+
+    const [selected, setSelected] = useState(defaultFormData);
 
     const [output, setOutput] = useState(selected.amount.toString());
 
-    const {records, addRecord} = useRecords();
-    console.log(records);
+    const {addRecord} = useRecords();
 
     const onChange = (obj: Partial<typeof selected>) => {
         setSelected(() => {
@@ -44,7 +45,10 @@ function Money() {
     };
 
     const onSubmit = () => {
-        addRecord(selected as RecrodItem);
+        addRecord(selected as newRecordItem);
+        window.alert("保存成功");
+        setSelected(() => defaultFormData);
+        setOutput(() => "0");
     };
 
     return (
