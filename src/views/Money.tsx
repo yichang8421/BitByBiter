@@ -45,10 +45,11 @@ function Money() {
     };
 
     const onSubmit = () => {
-        addRecord(selected as newRecordItem);
-        window.alert("保存成功");
-        setSelected(() => defaultFormData);
-        setOutput(() => "0");
+        if(addRecord(selected as newRecordItem)){
+            window.alert("保存成功");
+            setSelected(() => defaultFormData);
+            setOutput(() => "0");
+        }
     };
 
     return (
