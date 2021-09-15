@@ -51,6 +51,11 @@ const useTags = () => {
         return result;
     };
 
+    const getTagName = (id: number) => {
+        const tag = findTag(id);
+        return tag ? tag.name : "";
+    };
+
     const updateTag = (id: number, {name}: { name: string }) => {
         setTags(tags.map(tag => tag.id === id ? {id, name} : tag));
     };
@@ -61,7 +66,7 @@ const useTags = () => {
         });
     };
 
-    return {addTag, tags, setTags, findTag, findTagIndex, updateTag, deleteTag};
+    return {addTag, tags, setTags, findTag, findTagIndex, getTagName, updateTag, deleteTag};
 };
 
 export {useTags};
