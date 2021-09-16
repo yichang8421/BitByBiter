@@ -61,6 +61,8 @@ const Header = styled.h3`
     font-size: 18px;
     line-height: 20px;
     padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
 `;
 
 type Props = {
@@ -141,7 +143,14 @@ function Ledger() {
         return (<div>
             {array.map(([date, record]) => {
                 return (<div>
-                    <Header>{date}</Header>
+                    <Header>
+                        <span>{date}</span>
+                        <span>{record.reduce(
+                            (sum, item) => {
+                                return sum + item.amount;
+                            }, 0)}
+                        </span>
+                    </Header>
                     <div>
                         {record.map(r => {
                             return <Item>
