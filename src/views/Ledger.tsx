@@ -5,7 +5,7 @@ import {useRecords} from "../hooks/useRecords";
 import {useTags} from "../hooks/useTags";
 import {ElementCenter} from "../components/CalculatorOutput/ElementCenter";
 import {Space} from "../components/CalculatorOutput/Space";
-import day from "dayjs";
+import dayjs from "dayjs";
 
 const Wrapper = styled.section`
     font-size: 20px;
@@ -103,8 +103,27 @@ function Ledger() {
         return records.filter(r => r.recordType === type);
     };
 
+    const beautifyDate = (string: string) => {
+        const now = dayjs();
+        const day = dayjs(string);
+
+        const oneDay = 86400 * 1000;
+        if (day.isSame(now, "day")) {
+            return "今天";
+        } else if (day.isSame(now.valueOf() - oneDay, "day")) {
+            return "昨天";
+        } else if (day.isSame(now.subtract(2, "day"), "day")) {
+            return "前天";
+        } else if (day.isSame(now, "year")) {
+            return day.format("M月D日");
+        } else {
+            return day.format("YYYY年M月D日");
+        }
+    };
+
     selectedRecords().map(r => {
-        const key = day(r.createAt).format("YYYY - MM - DD");
+        const date = dayjs(r.createAt).toString();
+        const key = beautifyDate(date);
         if (!(key in hash)) {
             hash[key] = [];
         }
@@ -113,8 +132,8 @@ function Ledger() {
 
     const array = Object.entries(hash).sort((a, b) => {
         if (a[0] === b[0]) return 0;
-        if (a[0] > b[0]) return -1;
-        if (a[0] < b[0]) return 1;
+        if (a[0] > b[0]) return 1;
+        if (a[0] < b[0]) return -1;
         return 0;
     });
 
@@ -136,10 +155,10 @@ function Ledger() {
                                             );
                                         })
                                         .reduce((result, span, index, array) =>
-                                            result.concat(
-                                                index < array.length - 1 ?
-                                                    [span, "，"] :
-                                                    [span]),
+                                                result.concat(
+                                                    index < array.length - 1 ?
+                                                        [span, "，"] :
+                                                        [span]),
                                             [] as ReactNode[])}
                                 </div>
                                 {r.note && <div className="note">
