@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import React, {useState} from "react";
+import React, {ReactNode, useState} from "react";
 import styled from "styled-components";
 import {useRecords} from "../hooks/useRecords";
 import {useTags} from "../hooks/useTags";
@@ -57,6 +57,12 @@ const RecordFont = styled.span`
     font-size: 18px;
 `;
 
+const Header = styled.h3`
+    font-size: 18px;
+    line-height: 20px;
+    padding: 10px 16px;
+`;
+
 type Props = {
     value: RecordType;
     onChange: (value: RecordType) => void;
@@ -69,6 +75,7 @@ const TypeSelection: React.FC<Props> = (props: Props) => {
     };
     const [typeList] = useState<RecordType[]>(["-", "+"]);
     const type = props.value;
+
     return (
         <Wrapper>
             <ul>{
@@ -90,26 +97,61 @@ function Ledger() {
     const [type, setType] = useState<RecordType>("-");
     const {records} = useRecords();
     const {getTagName} = useTags();
+    const hash: { [key: string]: RecordItem[] } = {};
 
-    const ledgerContent = (records: RecordItem[]) => {
+    const selectedRecords = () => {
+        return records.filter(r => r.recordType === type);
+    };
+
+    selectedRecords().map(r => {
+        const key = day(r.createAt).format("YYYY - MM - DD");
+        if (!(key in hash)) {
+            hash[key] = [];
+        }
+        hash[key].push(r);
+    });
+
+    const array = Object.entries(hash).sort((a, b) => {
+        if (a[0] === b[0]) return 0;
+        if (a[0] > b[0]) return -1;
+        if (a[0] < b[0]) return 1;
+        return 0;
+    });
+
+    const ledgerContent = () => {
         return (<div>
-            {records.map(r => {
-                return <Item>
-                    <div className="tag">
-                        {r.tagIds.map(tagId => {
-                            return (
-                                <RecordFont>{getTagName(tagId)}&nbsp;</RecordFont>
-                            );
+            {array.map(([date, record]) => {
+                return (<div>
+                    <Header>{date}</Header>
+                    <div>
+                        {record.map(r => {
+                            return <Item>
+                                <div className="tag">
+                                    {r.tagIds
+                                        .map(tagId => {
+                                            return (
+                                                <RecordFont>
+                                                    {getTagName(tagId)}
+                                                </RecordFont>
+                                            );
+                                        })
+                                        .reduce((result, span, index, array) =>
+                                            result.concat(
+                                                index < array.length - 1 ?
+                                                    [span, "，"] :
+                                                    [span]),
+                                            [] as ReactNode[])}
+                                </div>
+                                {r.note && <div className="note">
+                                    {r.note}
+                                </div>}
+                                <div className="amount">
+                                    ￥{r.amount}
+                                </div>
+                            </Item>;
                         })}
                     </div>
-                    {r.note && <div className="note">
-                        {r.note}
-                    </div>}
-                    <div className="amount">
-                        ￥{r.amount}
-                    </div>
-                    {/*{day(r.createAt).format("YYYY年MM月DD")}*/}
-                </Item>;
+                </div>);
             })}
         </div>);
     };
@@ -122,7 +164,7 @@ function Ledger() {
             />
             {
                 records.length ?
-                    ledgerContent(records) :
+                    ledgerContent() :
                     <div>
                         <Space/>
                         <Space/>
