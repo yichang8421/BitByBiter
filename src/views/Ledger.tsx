@@ -145,7 +145,7 @@ function Ledger() {
                 return (<div>
                     <Header>
                         <span>{date}</span>
-                        <span>{record.reduce(
+                        <span>￥{record.reduce(
                             (sum, item) => {
                                 return sum + item.amount;
                             }, 0)}
