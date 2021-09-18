@@ -78,12 +78,12 @@ const TagsList = () => {
             <Space/>
             <Space/>
             <ElementCenter>
-                <Button
-                    onClick={() => {
-                        addTag();
-                    }}
-                >新增标签
-                </Button>
+                {/*<Button*/}
+                {/*    onClick={() => {*/}
+                {/*        addTag();*/}
+                {/*    }}*/}
+                {/*>新增标签*/}
+                {/*</Button>*/}
             </ElementCenter>
         </Layout>
     );

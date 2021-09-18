@@ -2,10 +2,12 @@
 
 import styled from "styled-components";
 import Icon from "../../components/Icon";
-import React from "react";
+import React, {ChangeEventHandler, useDebugValue, useEffect, useState} from "react";
 import img from "../../img/记账vue版.jpg";
 import {NavLink} from "react-router-dom";
 import {useTags} from "hooks/useTags";
+import {Input} from "../../components/Imput";
+import {createId} from "../../lib/createId";
 
 const Wrapper = styled.section`
     background:#fff;
@@ -77,9 +79,144 @@ const mapNameToIcon: Record<string, string> = {
     ["出行"]: "travel"
 };
 
+const ModalWrapper = styled.div`
+.center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.5)
+    );
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5)
+  );
+  width: 350px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border: solid 1px #bbb;
+  border-radius: 15px;
+  backdrop-filter(blur(2px))
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  word-break: break-word;
+  color: #111;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.visibility-false {
+  display: none;
+}
+
+.close-button {
+  background-color: red;
+}
+`;
+
+type ModalProps = {
+    isOpen: boolean;
+} & React.AllHTMLAttributes<any>
+
+function Modal(modelProps: ModalProps) {
+    return (
+        <div className={`visibility-${modelProps.isOpen} center`}>
+            {modelProps.children}
+        </div>
+    );
+}
+
+type myPromptProps = {
+    // hidePad: () => void;
+    newTag: string;
+    setNewTag: (value: string) => void;
+}
+
+
+function ModalPopup(props: myPromptProps) {
+    const [modalVisibility, setModalVisibility] = React.useState(false);
+    const {newTag, setNewTag} = props;
+    const {addTag} = useTags();
+
+    console.log(newTag);
+    const onAddtag: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setNewTag(e.target.value);
+    };
+
+    const submitAddTag = () => {
+        if (addTag(newTag))
+            setNewTag("");
+    };
+
+    function OpenModal() {
+        setModalVisibility(true);
+    }
+
+    function CloseModal() {
+        setModalVisibility(false);
+    }
+
+    return (
+        <>
+            <Button
+                onClick={OpenModal}
+            >
+                <Icon name={"add"}/>
+                添加
+            </Button>
+            <Modal isOpen={modalVisibility}>
+                <div className={"modal-content"}>
+                    <h1>添加标签</h1>
+                    <Input
+                        label={"备注"}
+                        type={"text"}
+                        placeholder={"此处添加备注"}
+                        value={newTag}
+                        onChange={onAddtag}/>
+                    <button
+                        onClick={() => {
+                            CloseModal();
+                            submitAddTag();
+                        }}
+                        className={"button close-button"}
+                    >
+                        提交
+                    </button>
+                    <button
+                        onClick={CloseModal}
+                        className={"button close-button"}
+                    >
+                        取消
+                    </button>
+                </div>
+            </Modal>
+        </>
+    );
+}
+
 const TagsSelection: React.FC<Props> = (props: Props) => {
     const {tags, addTag} = useTags();
     const selectedTagIds = props.value;
+    const [newTag, setNewTag] = useState("");
 
     function onToggleTag(tagId: number) {
         const index = selectedTagIds.indexOf(tagId);
@@ -111,15 +248,21 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
                         编辑
                     </Button>
                 </NavLink>
-                <Button
-                    onClick={() => {
-                        props.hidePad();
-                        addTag();
-                    }}
-                >
-                    <Icon name={"add"}/>
-                    添加
-                </Button>
+                <ModalWrapper>
+                    <ModalPopup
+                        newTag={newTag}
+                        setNewTag={setNewTag}
+                    />
+                </ModalWrapper>
+                {/*<Button*/}
+                {/*    onClick={() => {*/}
+                {/*        props.hidePad();*/}
+                {/*        addTag();*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    <Icon name={"add"}/>*/}
+                {/*    添加*/}
+                {/*</Button>*/}
                 {
                     tags.map(tag => {
                         const mapIcon = mapNameToIcon[tag.name];

@@ -27,15 +27,16 @@ const useTags = () => {
         window.localStorage.setItem("tags", JSON.stringify(tags));
     }, [tags]);
 
-    function addTag() {
-        const addTagName = window.prompt("请输入添加标签名");
-        if (addTagName) {
+    function addTag(addTag: string) {
+        if (addTag) {
             const id = createId();
             setTags(() => [
                 ...tags,
-                {id, name: addTagName}
+                {id, name: addTag}
             ]);
+            return true;
         }
+        return false;
     }
 
     const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];

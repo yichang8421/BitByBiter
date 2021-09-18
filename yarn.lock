@@ -1825,6 +1825,13 @@
   dependencies:
     classnames "*"
 
+"@types/echarts@4.9.0":
+  version "4.9.0"
+  resolved "https://registry.nlark.com/@types/echarts/download/@types/echarts-4.9.0.tgz?cache=0&sync_timestamp=1629707323053&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fecharts%2Fdownload%2F%40types%2Fecharts-4.9.0.tgz#e133ea5429ada1d814f9cc1deae855421dcdd2ef"
+  integrity sha1-4TPqVCmtodgU+cwd6uhVQh3N0u8=
+  dependencies:
+    "@types/zrender" "*"
+
 "@types/eslint@^7.2.6":
   version "7.28.0"
   resolved "https://registry.nlark.com/@types/eslint/download/@types/eslint-7.28.0.tgz#7e41f2481d301c68e14f483fe10b017753ce8d5a"
@@ -2088,6 +2095,11 @@
   integrity sha1-JqrZjdLCo45CEIbqmtQrnlFkKXc=
   dependencies:
     "@types/yargs-parser" "*"
+
+"@types/zrender@*":
+  version "4.0.1"
+  resolved "https://registry.nlark.com/@types/zrender/download/@types/zrender-4.0.1.tgz?cache=0&sync_timestamp=1629609255818&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fzrender%2Fdownload%2F%40types%2Fzrender-4.0.1.tgz#6280c40207927ce086be24b4391d668cd330e956"
+  integrity sha1-YoDEAgeSfOCGviS0OR1mjNMw6VY=
 
 "@typescript-eslint/eslint-plugin@^4.5.0":
   version "4.29.3"
@@ -4539,6 +4551,13 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+echarts@4.*:
+  version "4.9.0"
+  resolved "https://registry.nlark.com/echarts/download/echarts-4.9.0.tgz?cache=0&sync_timestamp=1630472181626&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fecharts%2Fdownload%2Fecharts-4.9.0.tgz#a9b9baa03f03a2a731e6340c55befb57a9e1347d"
+  integrity sha1-qbm6oD8Doqcx5jQMVb77V6nhNH0=
+  dependencies:
+    zrender "4.3.2"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -12018,3 +12037,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.nlark.com/yocto-queue/download/yocto-queue-0.1.0.tgz?cache=0&sync_timestamp=1628813299341&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fyocto-queue%2Fdownload%2Fyocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=
+
+zrender@4.3.2:
+  version "4.3.2"
+  resolved "https://registry.nlark.com/zrender/download/zrender-4.3.2.tgz?cache=0&sync_timestamp=1630140956807&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fzrender%2Fdownload%2Fzrender-4.3.2.tgz#ec7432f9415c82c73584b6b7b8c47e1b016209c6"
+  integrity sha1-7HQy+UFcgsc1hLa3uMR+GwFiCcY=
