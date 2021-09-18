@@ -149,13 +149,14 @@ type myPromptProps = {
     // hidePad: () => void;
     newTag: string;
     setNewTag: (value: string) => void;
+    addTag: (string: string) => boolean;
 }
 
 
 function ModalPopup(props: myPromptProps) {
     const [modalVisibility, setModalVisibility] = React.useState(false);
     const {newTag, setNewTag} = props;
-    const {addTag} = useTags();
+    const {addTag} = props;
 
     console.log(newTag);
     const onAddtag: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -252,6 +253,7 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
                     <ModalPopup
                         newTag={newTag}
                         setNewTag={setNewTag}
+                        addTag={addTag}
                     />
                 </ModalWrapper>
                 {/*<Button*/}
