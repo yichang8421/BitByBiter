@@ -1,24 +1,6 @@
 import styled from "styled-components";
-import React, {ChangeEventHandler, forwardRef, useImperativeHandle} from "react";
-import Icon from "./Icon";
+import React, {ChangeEventHandler, useImperativeHandle} from "react";
 import {Input} from "./Imput";
-
-const Button = styled.button`
-    border-radius: 20px;
-    box-shadow: inset 0 0 5px rgb(0 0 0 / 15%);
-    background: inherit;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: bolder;
-    margin: 8px 8px;
-    margin-left: 30px;
-    margin-right: 20px;
-    padding: 2px 4px;
-`;
-
 
 const ElemCenter = styled.div`
     position: absolute;
@@ -105,10 +87,9 @@ type myPromptProps = {
 function OhMyPrompt(props: myPromptProps) {
     const [display, setDisplay] = React.useState(false);
     const {newTag, setNewTag} = props;
-    const {addTag, hidePad} = props;
+    const {addTag} = props;
     const {onRef} = props;
     useImperativeHandle(onRef, () => ({
-        // onChild 就是暴露给父组件的方法
         openMyPrompt: () => {
             setDisplay(true);
         }
@@ -123,9 +104,6 @@ function OhMyPrompt(props: myPromptProps) {
         setNewTag("");
     };
 
-    // function openMyPrompt() {
-    //     setDisplay(true);
-    // }
 
     function closeMyPrompt() {
         setDisplay(false);
@@ -134,15 +112,6 @@ function OhMyPrompt(props: myPromptProps) {
 
     return (
         <>
-            {/*<Button*/}
-            {/*    onClick={() => {*/}
-            {/*        openMyPrompt();*/}
-            {/*        hidePad();*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <Icon name={"add"}/>*/}
-            {/*    添加*/}
-            {/*</Button>*/}
             <DisplayPrompt isOpen={display}>
                 <MyPrompt>
                     <h3>添加标签</h3>
