@@ -50,7 +50,7 @@ const TagList = styled.ol`
 const TagsList = () => {
     const {tags, addTag, deleteTag} = useTags();
     const [newTag, setNewTag] = useState("");
-    const child = useRef();
+    const child = useRef(null);
     const onChild = () => {
         // @ts-ignore
         child.current.openMyPrompt();

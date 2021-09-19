@@ -83,7 +83,7 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
     const {tags, addTag} = useTags();
     const selectedTagIds = props.value;
     const [newTag, setNewTag] = useState("");
-    const child = useRef();
+    const child = useRef(null);
     const onChild = () => {
         // @ts-ignore
         child.current.openMyPrompt();
