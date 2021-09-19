@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import Layout from "components/Layout";
 import {useTags} from "hooks/useTags";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {Button} from "components/MyButton";
 import {ElementCenter} from "../../../components/CalculatorOutput/ElementCenter";
 import {Space} from "../../../components/CalculatorOutput/Space";
+import {OhMyPrompt} from "../../../components/OhMyPrompt";
 
 const TitleWrapper = styled.div`
     text-align: center;
@@ -48,6 +49,13 @@ const TagList = styled.ol`
 
 const TagsList = () => {
     const {tags, addTag, deleteTag} = useTags();
+    const [newTag, setNewTag] = useState("");
+    const child = useRef();
+    const onChild = () => {
+        // @ts-ignore
+        child.current.openMyPrompt();
+    };
+
     return (
         <Layout>
             <TitleWrapper>
@@ -77,13 +85,22 @@ const TagsList = () => {
             <Space/>
             <Space/>
             <Space/>
+            <Space/>
+            <Space/>
             <ElementCenter>
-                {/*<Button*/}
-                {/*    onClick={() => {*/}
-                {/*        addTag();*/}
-                {/*    }}*/}
-                {/*>新增标签*/}
-                {/*</Button>*/}
+                <Button
+                    onClick={() => {
+                        onChild();
+                    }}
+                >
+                    新增标签
+                </Button>
+                <OhMyPrompt
+                    newTag={newTag}
+                    setNewTag={setNewTag}
+                    addTag={addTag}
+                    onRef={child}
+                />
             </ElementCenter>
         </Layout>
     );

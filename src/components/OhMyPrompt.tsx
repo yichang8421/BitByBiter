@@ -76,7 +76,7 @@ function DisplayPrompt(props: VisibleProps) {
 }
 
 type myPromptProps = {
-    hidePad: () => void;
+    hidePad?: () => void;
     newTag: string;
     setNewTag: (value: string) => void;
     addTag: (string: string) => boolean;
@@ -86,9 +86,8 @@ type myPromptProps = {
 
 function OhMyPrompt(props: myPromptProps) {
     const [display, setDisplay] = React.useState(false);
-    const {newTag, setNewTag} = props;
-    const {addTag} = props;
-    const {onRef} = props;
+    const {newTag, setNewTag, addTag, onRef} = props;
+
     useImperativeHandle(onRef, () => ({
         openMyPrompt: () => {
             setDisplay(true);
