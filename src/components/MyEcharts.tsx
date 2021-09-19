@@ -11,14 +11,13 @@ const MyEcharts: React.FC<Props> = (props: Props) => {
     const {option} = props;
 
     useEffect(() => {
-        console.log(container.current);
-        const width = document.documentElement.clientWidth;
+        // const width = document.documentElement.clientWidth;
         // @ts-ignore
-        container.current.style.width = `${width - 20}px`;
+        container.current.style.width = `400%`;
         // @ts-ignore
-        container.current.style.height = `${(width - 20) * 1.2}px`;
+        container.current.style.height = `500px`;
         // @ts-ignore
-        chart.current = echarts.init(container.current, "dark");
+        chart.current = echarts.init(container.current, "");
     }, []);
 
     useEffect(() => {
