@@ -26,7 +26,8 @@ function Money() {
         tagIds: [] as number[],
         note: "",
         recordType: "-" as RecordType,
-        amount: 0
+        amount: 0,
+        createAt: new Date().toISOString()
     };
 
     const [selected, setSelected] = useState(defaultFormData);
@@ -45,7 +46,7 @@ function Money() {
     };
 
     const onSubmit = () => {
-        if(addRecord(selected as newRecordItem)){
+        if (addRecord(selected as RecordItem)) {
             window.alert("保存成功");
             setSelected(() => defaultFormData);
             setOutput(() => "0");
@@ -65,10 +66,20 @@ function Money() {
                 }}
             />
             <NoteSection
+                label={"备注"}
                 hidePad={hidePad}
                 value={selected.note}
                 onChange={note => {
                     onChange({note});
+                }}
+            />
+            <NoteSection
+                label={"日期"}
+                hidePad={hidePad}
+                type={"date"}
+                value={selected.createAt}
+                onChange={createAt => {
+                    onChange({createAt});
                 }}
             />
             <TagsSelection

@@ -13,12 +13,12 @@ export const useRecords = () => {
     }, [records]);
 
 
-    const addRecord = (newRecord: newRecordItem) => {
+    const addRecord = (newRecord: RecordItem) => {
         if (!newRecord.tagIds.length) {
             alert("至少要选择一个标签哦");
             return false;
         } else {
-            const record = {...newRecord, createAt: (new Date().toISOString())};
+            const record = {...newRecord, createAt: (newRecord.createAt || new Date().toISOString())};
             setRecords(() => [
                 ...records,
                 record

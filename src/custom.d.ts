@@ -8,4 +8,4 @@ type RecordItem = {
     createAt: string;
 }
 
-type newRecordItem = Omit<RecordItem, "createAt">
+// type newRecordItem = Omit<RecordItem, "createAt">
