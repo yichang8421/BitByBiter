@@ -29,8 +29,8 @@ const useTags = () => {
 
     function addTag(addTag: string) {
         if (addTag) {
-            for (let i = 0; i < tags.length; i++) {
-                let name = tags[i].name;
+            for (let key in tags) {
+                let name = tags[key].name;
                 if (addTag === name){
                     window.alert("此标签已存在哦");
                     return false;
