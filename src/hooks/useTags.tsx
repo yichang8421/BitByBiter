@@ -25,7 +25,7 @@ const useTags = () => {
 
     useUpdate(() => {
         window.localStorage.setItem("tags", JSON.stringify(tags));
-    }, [tags]);
+    }, tags);
 
     function addTag(addTag: string) {
         if (addTag) {

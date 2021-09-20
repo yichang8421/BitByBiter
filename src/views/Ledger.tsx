@@ -75,8 +75,6 @@ function Ledger() {
         return {data: beautifyDate(date), total, type: type[0]};
     });
 
-    console.log(result);
-
     const ledgerContent = () => {
         return (<div>
             {array.map(([date, record]) => {
