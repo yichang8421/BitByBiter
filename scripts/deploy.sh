@@ -4,7 +4,6 @@ yarn build &&
 
 cd build &&
 
-cd build &&
 git init &&
 git add . &&
 git commit -m "deploy" &&
