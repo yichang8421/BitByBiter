@@ -1,6 +1,7 @@
 {
   "name": "morney-react",
   "version": "0.1.0",
+  "homepage": "https://yichang8421.github.io/BitByBiter-website/",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
@@ -25,6 +26,7 @@
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.3.1",
+    "cross-env": "^7.0.3",
     "css-loader": "4.3.0",
     "dayjs": "^1.10.7",
     "dotenv": "8.2.0",
@@ -85,6 +87,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "build:dev": "cross-env NODE_ENV=development yarn build",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
