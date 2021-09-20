@@ -5,7 +5,7 @@ import _ from "lodash";
 const useChartArray = () => {
     const {records} = useRecords();
     const today = new Date();
-    const array: { date: string; value: number; }[] = [];
+    const keyValueList: { key: string; value: number; }[] = [];
 
     for (let i = 0; i <= 29; i++) {
         const dateString =
@@ -17,19 +17,19 @@ const useChartArray = () => {
                 createAt: dateString
             });
 
-        array.push({
-            date: dateString,
+        keyValueList.push({
+            key: dateString,
             value: foundRecord ? foundRecord.amount : 0
         });
 
-        array.sort((a, b) => {
-            if (a.date > b.date) return 1;
-            else if (a.date < b.date) return -1;
+        keyValueList.sort((a, b) => {
+            if (a.key > b.key) return 1;
+            else if (a.key < b.key) return -1;
             else return 0;
         });
     }
 
-    return {array};
+    return {keyValueList};
 };
 
 export {useChartArray};

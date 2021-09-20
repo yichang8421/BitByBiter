@@ -18,9 +18,9 @@ const ChartsWrapper = styled.div`
 function Statistics() {
     const [type, setType] = useState<RecordType>("-");
     const container = useRef(null);
-    const {array} = useChartArray();
-    const keys = array.map(item => item.date);
-    const value = array.map(item => item.value);
+    const {keyValueList} = useChartArray();
+    const key = keyValueList.map(item => item.key);
+    const value = keyValueList.map(item => item.value);
 
     useEffect(() => {
         // @ts-ignore
@@ -31,7 +31,7 @@ function Statistics() {
         grid: {top: 128, right: 8, left: 8},
         xAxis: {
             type: "category",
-            data: keys,
+            data: key,
             axisTick: {alignWithLabel: true},
             axisLabel: {
                 formatter: function (value: string) {
