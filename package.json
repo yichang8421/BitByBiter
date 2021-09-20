@@ -89,7 +89,7 @@
     "build": "node scripts/build.js",
     "build:dev": "cross-env NODE_ENV=development yarn build",
     "test": "node scripts/test.js",
-    "daploy": "sh scripts/deploy.sh"
+    "deploy": "sh scripts/deploy.sh"
   },
   "eslintConfig": {
     "extends": [
