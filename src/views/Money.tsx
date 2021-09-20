@@ -6,6 +6,7 @@ import {CalculatorPad} from "./component/CalculatorPad";
 import {RecordSelection} from "./component/RecordSelection";
 import styled from "styled-components";
 import {useRecords} from "../hooks/useRecords";
+import dayjs from "dayjs";
 
 const MyLayout = styled(Layout)`
     //border:1px solid blue;
@@ -27,7 +28,10 @@ function Money() {
         note: "",
         recordType: "-" as RecordType,
         amount: 0,
-        createAt: new Date().toISOString()
+        createAt:
+            dayjs(new Date()
+            .toISOString())
+            .format("YYYY-MM-DD")
     };
 
     const [selected, setSelected] = useState(defaultFormData);

@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {TypeSelection} from "../components/TypeSelection";
 import {MyEcharts} from "../components/MyEcharts";
 import styled from "styled-components";
+import {useChartArray} from "../hooks/useChartArray";
 
 const ChartsWrapper = styled.div`
     //width:500%;
@@ -17,23 +18,20 @@ const ChartsWrapper = styled.div`
 function Statistics() {
     const [type, setType] = useState<RecordType>("-");
     const container = useRef(null);
+    const {array} = useChartArray();
+    const keys = array.map(item => item.date);
+    const value = array.map(item => item.value);
 
     useEffect(() => {
-        console.log(container.current);
         // @ts-ignore
         container.current.scrollLeft = container.current.scrollWidth;
     }, []);
 
-    const [option, setOption] = useState({
+    const option = {
         grid: {top: 128, right: 8, left: 8},
         xAxis: {
             type: "category",
-            data: [
-                "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-                "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-                "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-                "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
-            ],
+            data: keys,
             axisTick: {alignWithLabel: true}
         },
         yAxis: {
@@ -45,12 +43,7 @@ function Statistics() {
                 symbol: "circle",
                 itemStyle: {borderWidth: 0.8, color: "#ff8000", borderColor: "#e7f2ff"},
                 symbolSize: 8,
-                data: [
-                    820, 932, 901, 934, 1290, 1330, 1320,
-                    820, 932, 901, 934, 1290, 1330, 1320,
-                    820, 932, 901, 934, 1290, 1330, 1320,
-                    820, 932, 901, 934, 1290, 1330, 1320
-                ],
+                data: value,
                 type: "line",
                 smooth: true,
             },
@@ -60,7 +53,7 @@ function Statistics() {
             trigger: "axis",
             // position: "top"
         },
-    });
+    };
 
     return (
         <Layout>
