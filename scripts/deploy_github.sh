@@ -12,4 +12,4 @@ git push -u origin master -f
 
 cd -
 
-# deploy.sh 写完以后记得添加可执行权限：chmod +x scripts/deploy.sh（Windows系统可不执行此句）
+# deploy_github.sh 写完以后记得添加可执行权限：chmod +x scripts/deploy_github.sh（Windows系统可不执行此句）
