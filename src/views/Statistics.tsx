@@ -32,7 +32,12 @@ function Statistics() {
         xAxis: {
             type: "category",
             data: keys,
-            axisTick: {alignWithLabel: true}
+            axisTick: {alignWithLabel: true},
+            axisLabel: {
+                formatter: function (value: string) {
+                    return value.substr(5);
+                }
+            }
         },
         yAxis: {
             type: "value",
@@ -51,7 +56,7 @@ function Statistics() {
         tooltip: {
             // triggerOn: "click",
             trigger: "axis",
-            // position: "top"
+            position: "top"
         },
     };
 
