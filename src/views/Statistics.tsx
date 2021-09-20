@@ -28,7 +28,7 @@ function Statistics() {
         return records.filter(r => r.recordType === type);
     };
 
-    selectedRecords().map(r => {
+    selectedRecords().forEach(r => {
         const key = dayjs(r.createAt).format("YYYY-MM-DD");
         if (!(key in hash)) {
             hash[key] = [];

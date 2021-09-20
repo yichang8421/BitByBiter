@@ -47,7 +47,7 @@ function Ledger() {
         return records.filter(r => r.recordType === type);
     };
 
-    selectedRecords().map(r => {
+    selectedRecords().forEach(r => {
         const key = dayjs(r.createAt).format("YYYY-MM-DD");
         if (!(key in hash)) {
             hash[key] = [];
@@ -60,19 +60,6 @@ function Ledger() {
         if (a[0] > b[0]) return -1;
         if (a[0] < b[0]) return 1;
         return 0;
-    });
-
-    const result = array.map(([date, record]) => {
-        const total = record.reduce(
-            (sum, item) => {
-                return sum + item.amount;
-            }, 0);
-
-        const type = record.map(r => {
-            return r.recordType;
-        });
-
-        return {data: beautifyDate(date), total, type: type[0]};
     });
 
     const ledgerContent = () => {
