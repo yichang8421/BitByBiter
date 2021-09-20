@@ -3,7 +3,9 @@ import React, {useEffect, useRef, useState} from "react";
 import {TypeSelection} from "../components/TypeSelection";
 import {MyEcharts} from "../components/MyEcharts";
 import styled from "styled-components";
-import {useChartArray} from "../hooks/useChartArray";
+import {useRecords} from "../hooks/useRecords";
+import dayjs from "dayjs";
+import _ from "lodash";
 
 const ChartsWrapper = styled.div`
     //width:500%;
@@ -18,9 +20,64 @@ const ChartsWrapper = styled.div`
 function Statistics() {
     const [type, setType] = useState<RecordType>("-");
     const container = useRef(null);
-    const {keyValueList} = useChartArray();
-    const key = keyValueList.map(item => item.key);
-    const value = keyValueList.map(item => item.value);
+
+    const {records} = useRecords();
+    const hash: { [key: string]: RecordItem[] } = {};
+
+    const selectedRecords = () => {
+        return records.filter(r => r.recordType === type);
+    };
+
+    selectedRecords().map(r => {
+        const key = dayjs(r.createAt).format("YYYY-MM-DD");
+        if (!(key in hash)) {
+            hash[key] = [];
+        }
+        hash[key].push(r);
+    });
+
+    const array = Object.entries(hash).sort((a, b) => {
+        if (a[0] === b[0]) return 0;
+        if (a[0] > b[0]) return -1;
+        if (a[0] < b[0]) return 1;
+        return 0;
+    });
+
+    const result = array.map(([date, record]) => {
+        const total = record.reduce(
+            (sum, item) => {
+                return sum + item.amount;
+            }, 0);
+
+        const type = record.map(r => {
+            return r.recordType;
+        });
+
+        return {date, total, type: type[0]};
+    });
+
+    const today = new Date();
+    const arr: { date: string; value: number; }[] = [];
+
+    for (let i = 0; i <= 29; i++) {
+        const dateString =
+            dayjs(today)
+                .subtract(i, "day")
+                .format("YYYY-MM-DD");
+        const foundRecord =
+            _.find(result, {
+                date: dateString
+            });
+
+        arr.push({
+            date: dateString,
+            value: foundRecord ? foundRecord.total : 0
+        });
+    }
+
+    arr.sort((a, b) => dayjs(a.date).valueOf() - dayjs(b.date).valueOf());
+    const key = arr.map(item => item.date);
+    const value = arr.map(item => item.value);
 
     useEffect(() => {
         // @ts-ignore

@@ -7,6 +7,7 @@ import {ElementCenter} from "../components/CalculatorOutput/ElementCenter";
 import {Space} from "../components/CalculatorOutput/Space";
 import {TypeSelection} from "../components/TypeSelection";
 import dayjs from "dayjs";
+import {beautifyDate} from "../lib/beautifyDate";
 
 const Item = styled.div`
     display: flex;
@@ -46,24 +47,6 @@ function Ledger() {
         return records.filter(r => r.recordType === type);
     };
 
-    const beautifyDate = (string: string) => {
-        const now = dayjs();
-        const day = dayjs(string);
-
-        const oneDay = 86400 * 1000;
-        if (day.isSame(now, "day")) {
-            return "今天";
-        } else if (day.isSame(now.valueOf() - oneDay, "day")) {
-            return "昨天";
-        } else if (day.isSame(now.subtract(2, "day"), "day")) {
-            return "前天";
-        } else if (day.isSame(now, "year")) {
-            return day.format("M月D日");
-        } else {
-            return day.format("YYYY年M月D日");
-        }
-    };
-
     selectedRecords().map(r => {
         const key = dayjs(r.createAt).format("YYYY-MM-DD");
         if (!(key in hash)) {
@@ -79,17 +62,33 @@ function Ledger() {
         return 0;
     });
 
+    const result = array.map(([date, record]) => {
+        const total = record.reduce(
+            (sum, item) => {
+                return sum + item.amount;
+            }, 0);
+
+        const type = record.map(r => {
+            return r.recordType;
+        });
+
+        return {data: beautifyDate(date), total, type: type[0]};
+    });
+
+    console.log(result);
+
     const ledgerContent = () => {
         return (<div>
             {array.map(([date, record]) => {
+                const total = record.reduce(
+                    (sum, item) => {
+                        return sum + item.amount;
+                    }, 0);
+
                 return (<div>
                     <Header>
                         <span>{beautifyDate(date)}</span>
-                        <span>￥{record.reduce(
-                            (sum, item) => {
-                                return sum + item.amount;
-                            }, 0)}
-                        </span>
+                        <span>￥{total}</span>
                     </Header>
                     <div>
                         {record.map(r => {
