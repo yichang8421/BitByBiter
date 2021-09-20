@@ -69,6 +69,7 @@ type Props = {
     hidePad: () => void;
     value: number[];
     onChange: (selected: number[]) => void;
+    className: string;
 }
 
 const mapNameToIcon: Record<string, string> = {
@@ -107,7 +108,7 @@ const TagsSelection: React.FC<Props> = (props: Props) => {
             "";
 
     return (
-        <Wrapper>
+        <Wrapper className={props.className}>
             <ol>
                 <NavLink to={"/edit"} activeClassName="selected">
                     <Button

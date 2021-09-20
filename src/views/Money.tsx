@@ -12,6 +12,9 @@ const MyLayout = styled(Layout)`
     //border:1px solid blue;
     display: flex;
     flex-direction: column;
+    >.autoOverflow {
+        overflow-y: auto;
+    }
 `;
 
 function Money() {
@@ -30,8 +33,8 @@ function Money() {
         amount: 0,
         createAt:
             dayjs(new Date()
-            .toISOString())
-            .format("YYYY-MM-DD")
+                .toISOString())
+                .format("YYYY-MM-DD")
     };
 
     const [selected, setSelected] = useState(defaultFormData);
@@ -87,6 +90,7 @@ function Money() {
                 }}
             />
             <TagsSelection
+                className={"autoOverflow"}
                 hidePad={hidePad}
                 value={selected.tagIds}
                 onChange={tagIds => {
