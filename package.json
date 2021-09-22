@@ -1,7 +1,7 @@
 {
   "name": "morney-react",
   "version": "0.1.0",
-  "homepage": "https://yichang8421.github.io/BitByBiter-website/",
+  "homepage": "https://yichang8421.gitee.io/bitbybiter-website",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
